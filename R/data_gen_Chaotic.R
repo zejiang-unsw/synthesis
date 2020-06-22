@@ -15,7 +15,8 @@
 #' @param b The \emph{b} parameter. Default: 0.2.
 #' @param w The \emph{w} parameter. Default: 5.7.
 #' @param time The temporal interval at which the system will be generated.
-#' Default: time=seq(0,50,length.out = 5000).
+#' Default: time=seq(0,50,by=0.01) or time = seq(0,by=0.01,length.out = 1000)
+#' @param s The level of noise, default 0.
 #'
 #' @return A list with four vectors named \emph{time}, \emph{x}, \emph{y}
 #' and \emph{z} containing the time, the x-components, the
@@ -31,15 +32,10 @@
 #' ts.r <- data.gen.Rossler(a = 0.2, b = 0.2, w = 5.7, start = c(-2, -10, 0.2),
 #'                 time = seq(0, 50, length.out = 1000))
 #'
-#' #add noise
-#' ts.r$x <- ts(ts.r$x + rnorm(length(ts.r$time),mean=0, sd=1))
-#' ts.r$y <- ts(ts.r$y + rnorm(length(ts.r$time),mean=0, sd=1))
-#' ts.r$z <- ts(ts.r$z + rnorm(length(ts.r$time),mean=0, sd=1))
-#'
 #' ts.plot(ts.r$x,ts.r$y,ts.r$z, col=c("black","red","blue"))
 
 data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
-                             time = seq(0, 50, length.out = 1000)) {
+                             time = seq(0, 50, length.out = 1000), s) {
   params = c(a, b, w)
   rosslerEquations = function(coord, t, params) {
     x = coord[[1]]
@@ -51,6 +47,13 @@ data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
     c(-y - z, x + a * y, b + z * (x - w))
   }
   r = rungeKutta(rosslerEquations, start, time, params)
+
+  #add noise
+  if(!missing(s)){
+  r[,1] <- ts(r[,1] + rnorm(length(time),mean=0, sd=s))
+  r[,2] <- ts(r[,2] + rnorm(length(time),mean=0, sd=s))
+  r[,3] <- ts(r[,3] + rnorm(length(time),mean=0, sd=s))
+  }
 
   list(time = time, x = r[, 1], y = r[, 2], z = r[, 3])
 }
@@ -73,6 +76,7 @@ data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
 #' @param beta The \eqn{\beta}{beta} parameter. Default: 8/3.
 #' @param time The temporal interval at which the system will be generated.
 #' Default: time=seq(0,50,by = 0.01).
+#' @param s The level of noise, default 0.
 #'
 #' @note Some initial values may lead to an unstable system that will tend to infinity.
 #' @references Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries
@@ -83,9 +87,18 @@ data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
 #' @export
 #'
 #' @examples
+#' ###Synthetic example - Rossler
+#' ts.l <- data.gen.Lorenz(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
+#'                         time = seq(0, by=0.05, length.out = 2000))
 #'
+#' zlim <- c(floor(min(ts.l$z)),ceiling(max(ts.l$z)))
+#' plot3D::scatter3D(ts.l$x,ts.l$y,ts.l$z, phi = 0, cex=0.5, zlim=zlim,
+#'                   col = "blue", ticktype = "detailed")
+#'
+#' ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c("black","red","blue"))
+
 data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
-                            time = seq(0, 50, length.out = 1000)) {
+                            time = seq(0, 50, length.out = 1000), s) {
   params = c(sigma, beta, rho)
   lorenzEquations = function(coord, t, params) {
     x = coord[[1]]
@@ -97,6 +110,13 @@ data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14
     c(sigma * (y - x), rho * x - y - x * z, x * y - beta * z)
   }
   l = rungeKutta(lorenzEquations, start, time, params)
+
+  #add noise
+  if(!missing(s)){
+    l[,1] <- ts(l[,1] + rnorm(length(time),mean=0, sd=s))
+    l[,2] <- ts(l[,2] + rnorm(length(time),mean=0, sd=s))
+    l[,3] <- ts(l[,3] + rnorm(length(time),mean=0, sd=s))
+  }
 
   list(time = time, x = l[, 1], y = l[, 2], z = l[, 3])
 }
@@ -112,11 +132,12 @@ data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14
 #' (\emph{a}=1.4 and \emph{b}=0.3) is known to produce a deterministic chaotic
 #' time series.
 #'
-#' @param start A 2-dimensional vector indicating the starting values for the x and y Duffing coordinates.
-#' Default: If the starting point is not specified, it is generated randomly.
+#' @param nobs Length of the generated time series. Default: 5000 samples.
 #' @param a The \emph{a} parameter. Default: 2.75.
 #' @param b The \emph{b} parameter. Default: 0.2.
-#' @param n.sample Length of the generated time series. Default: 5000 samples.
+#' @param start A 2-dimensional vector indicating the starting values for the x and y Duffing coordinates.
+#' Default: If the starting point is not specified, it is generated randomly.
+#' @param s The level of noise, default 0.
 #' @param do.plot Logical value. If TRUE (default value), a plot of the generated Duffing system is shown.
 #'
 #' @note Some initial values may lead to an unstable system that will tend to infinity.
@@ -127,12 +148,12 @@ data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14
 #' @export
 #'
 #' @examples
-#' Duffing.map=data.gen.Duffing(n.sample = 1000, do.plot=TRUE)
+#' Duffing.map=data.gen.Duffing(nobs = 1000, do.plot=TRUE)
 
-data.gen.Duffing <- function(start = runif(min = -0.5, max = 0.5, n = 2), a = 2.75, b = 0.2,
-                             n.sample = 5000, do.plot=TRUE) {
+data.gen.Duffing <- function(nobs = 5000, a = 2.75, b = 0.2, start = runif(min = -0.5, max = 0.5, n = 2), s,
+                             do.plot=TRUE) {
   nwarm=500
-  n = n.sample + nwarm
+  n = nobs + nwarm
   y = x = vector(mode = "numeric", length = n)
   x[[1]] = start[[1]]
   y[[1]] = start[[2]]
@@ -140,6 +161,12 @@ data.gen.Duffing <- function(start = runif(min = -0.5, max = 0.5, n = 2), a = 2.
   for (i in 2:n) {
     x[[i]] = y[[i - 1]]
     y[[i]] = -b * x[[i - 1]] + a * y[[i - 1]] - y[[i - 1]]^3
+  }
+
+  #add noise
+  if(!missing(s)){
+    x <- x + rnorm(n,mean=0, sd=s)
+    y <- y + rnorm(n,mean=0, sd=s)
   }
 
   x = x[(nwarm+1):n]
@@ -164,11 +191,12 @@ data.gen.Duffing <- function(start = runif(min = -0.5, max = 0.5, n = 2), a = 2.
 #' (\emph{a}=1.4 and \emph{b}=0.3) is known to produce a deterministic chaotic
 #' time series.
 #'
-#' @param start A 2-dimensional vector indicating the starting values for the x and y Henon coordinates.
-#' Default: If the starting point is not specified, it is generated randomly.
+#' @param nobs Length of the generated time series. Default: 5000 samples.
 #' @param a The \emph{a} parameter. Default: 1.4.
 #' @param b The \emph{b} parameter. Default: 0.3.
-#' @param n.sample Length of the generated time series. Default: 5000 samples.
+#' @param start A 2-dimensional vector indicating the starting values for the x and y Henon coordinates.
+#' Default: If the starting point is not specified, it is generated randomly.
+#' @param s The level of noise, default 0.
 #' @param do.plot Logical value. If TRUE (default value), a plot of the generated Henon system is shown.
 #'
 #' @note Some initial values may lead to an unstable system that will tend to infinity.
@@ -179,12 +207,12 @@ data.gen.Duffing <- function(start = runif(min = -0.5, max = 0.5, n = 2), a = 2.
 #' @export
 #'
 #' @examples
-#' Henon.map=data.gen.Henon(n.sample = 1000, do.plot=TRUE)
+#' Henon.map=data.gen.Henon(nobs = 1000, do.plot=TRUE)
 
-data.gen.Henon <- function(start = runif(min = -0.5, max = 0.5, n = 2), a = 1.4, b = 0.3,
-                           n.sample = 5000, do.plot=TRUE) {
+data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(min = -0.5, max = 0.5, n = 2), s,
+                           do.plot=TRUE) {
   nwarm=500
-  n = n.sample + nwarm
+  n = nobs + nwarm
   y = x = vector(mode = "numeric", length = n)
   x[[1]] = start[[1]]
   y[[1]] = start[[2]]
@@ -192,6 +220,12 @@ data.gen.Henon <- function(start = runif(min = -0.5, max = 0.5, n = 2), a = 1.4,
   for (i in 2:n) {
     x[[i]] = y[[i - 1]] + 1 - a * x[[i - 1]] ^ 2
     y[[i]] = b * x[[i - 1]]
+  }
+
+  #add noise
+  if(!missing(s)){
+    x <- x + rnorm(n,mean=0, sd=s)
+    y <- y + rnorm(n,mean=0, sd=s)
   }
 
   x = x[(nwarm+1):n]
@@ -203,6 +237,54 @@ data.gen.Henon <- function(start = runif(min = -0.5, max = 0.5, n = 2), a = 1.4,
     plot(x, y, xlab = "x[n]", ylab = "y[n]", main = title, type = "p")
   }
   list(x = x, y = y)
+}
+
+#' Logistic map
+#' @description
+#' Generates a time series using the logistic map.
+#' @details
+#' The logistic map is defined as follows:
+#' \deqn{x_n = r  \cdot  x_{n-1}   \cdot  (1 - x_{n-1})}{x[n] = r * x[n-1]  * (1 - x[n-1])}
+#'
+#' @param nobs  Length of the generated time series. Default: 5000 samples.
+#' @param r     The \emph{r} parameter. Default: 4
+#' @param start A numeric value indicating the starting value for the time series.
+#' If the starting point is not specified, it is generated randomly.
+#' @param s The level of noise, default 0.
+#' @param do.plot Logical value. If TRUE (default value), a plot of the generated Logistic system is shown.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' Logistic.map=data.gen.Logistic(nobs = 1000, do.plot=TRUE)
+
+data.gen.Logistic <- function(nobs=5000, r=4, start=runif(n = 1, min = 0, max = 1), s,
+                              do.plot=TRUE) {
+  nwarm=500
+  n = nobs + nwarm
+  x = vector(mode = "numeric", length = n)
+  x[[1]] = start
+
+  for (i in 2:n) {
+    x[[i]] = r * x[[i - 1]]  * (1 - x[[i - 1]])
+  }
+
+  #add noise
+  if(!missing(s)){
+    x <- x + rnorm(n,mean=0, sd=s)
+  }
+
+  x = x[(nwarm+1):n]
+
+  # plotting
+  if (do.plot) {
+    title = paste("Logistic map\n", "r = ",r)
+    #plot(1:nobs, x, xlab = "n", ylab = "x[n]", main = title, type = "l")
+    plot(x[-length(x)],x[-1], xlab="x[t]",ylab = "x[t+1]", main = title, type = "p")
+  }
+
+  list(x=x)
 }
 
 # Runge-Kutta method for solving differential equations. It is used to generate

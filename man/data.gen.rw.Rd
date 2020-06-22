@@ -4,14 +4,14 @@
 \alias{data.gen.rw}
 \title{Generate Random walk time series.}
 \usage{
-data.gen.rw(nobs, drift = 0.2, noise = 1)
+data.gen.rw(nobs, drift = 0.2, sd = 1)
 }
 \arguments{
 \item{nobs}{the data length to be generated}
 
 \item{drift}{drift}
 
-\item{noise}{the white noise in the data}
+\item{sd}{the white noise in the data}
 
 \item{ndim}{The number of potential predictors (default is 9)}
 }

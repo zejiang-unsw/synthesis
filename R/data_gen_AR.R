@@ -1,3 +1,16 @@
+# An autoregressive model of order p, AR(p), can be written as
+# yt=c+ϕ1y_t−1+ϕ2y_t−2+⋯+ϕpy_t−p+εt,
+# where εt is white noise.
+# For an AR(1) model:
+# •	when ϕ1=0, yt is equivalent to white noise;
+# •	when ϕ1=1 and c=0, yt is equivalent to a random walk;
+# •	when ϕ1=1 and c≠0, yt is equivalent to a random walk with drift;
+# •	when ϕ1<0, yt tends to oscillate around the mean.
+# We normally restrict autoregressive models to stationary data, in which case some constraints on the values of the parameters are required.
+# •	For an AR(1) model: −1<ϕ1<1.
+# •	For an AR(2) model: −1<ϕ2<1, ϕ1+ϕ2<1, ϕ2−ϕ1<1.
+# When p≥3, the restrictions are much more complicated. R takes care of these restrictions when estimating a model.
+
 #' Generate predictor and response data from AR1 model.
 #'
 #' @param nobs The data length to be generated.
@@ -13,14 +26,14 @@
 
 data.gen.ar1<-function(nobs,ndim=9)
 {
-	nwarm1=nwarm2=50
-	n=nobs+nwarm1+nwarm2
+  nwarm=500
+  n=nobs+nwarm
 	x<-matrix(0,n,1)
-	for (i in 1:nwarm1) {
+	for (i in 1:nwarm) {
 		x[i]<-rnorm(1,mean=0,sd=1)
 	}
 	dp<-matrix(0,(nobs),ndim)
-	for (i in (nwarm1+1):n){
+	for (i in (nwarm+1):n){
 		eps<-rnorm(1,mean=0,sd=1)
 		x[i]<-0.9*x[i-1]+0.866*eps
 	}
@@ -45,14 +58,14 @@ data.gen.ar1<-function(nobs,ndim=9)
 
 data.gen.ar4<-function(nobs,ndim=9)
 {
-	nwarm1=nwarm2=50
-	n=nobs+nwarm1+nwarm2
+  nwarm=500
+  n=nobs+nwarm
 	x<-matrix(0,n,1)
-	for (i in 1:nwarm1) {
+	for (i in 1:nwarm) {
 		x[i]<-rnorm(1,mean=0,sd=1)
 	}
 	dp<-matrix(0,(nobs),ndim)
-	for (i in (nwarm1+1):n){
+	for (i in (nwarm+1):n){
 		eps<-rnorm(1,mean=0,sd=1)
 		x[i]<-0.6*x[i-1]-0.4*x[i-4]+eps
 	}
@@ -77,14 +90,14 @@ data.gen.ar4<-function(nobs,ndim=9)
 
 data.gen.ar9<-function(nobs,ndim=9)
 {
-  nwarm1=nwarm2=50
-  n=nobs+nwarm1+nwarm2
+  nwarm=500
+  n=nobs+nwarm
   x<-matrix(0,n,1)
-  for (i in 1:nwarm1) {
+  for (i in 1:nwarm) {
     x[i]<-rnorm(1,mean=0,sd=1)
   }
   dp<-matrix(0,(nobs),ndim)
-  for (i in (nwarm1+1):n){
+  for (i in (nwarm+1):n){
     eps<-rnorm(1,mean=0,sd=1)
     x[i]<-0.3*x[i-1]-0.6*x[i-4]-0.5*x[i-9]+eps
   }
@@ -112,8 +125,8 @@ data.gen.ar9<-function(nobs,ndim=9)
 
 data.gen.tar1<-function(nobs,ndim=9, noise=0.1)
 {
-	nwarm1=nwarm2=50
-	n=nobs+nwarm1+nwarm2
+  nwarm1=nwarm2=250
+  n=nobs+nwarm1+nwarm2
 	x<-matrix(0,n,1)
 	for (i in 1:nwarm1) {
 		x[i]<-rnorm(1,mean=0,sd=1)
@@ -148,7 +161,7 @@ data.gen.tar1<-function(nobs,ndim=9, noise=0.1)
 
 data.gen.tar2<-function(nobs,ndim=9,noise=0.1)
 {
-  nwarm1=nwarm2=50
+  nwarm1=nwarm2=250
   n=nobs+nwarm1+nwarm2
   x<-matrix(0,n,1)
   for (i in 1:nwarm1){
@@ -166,23 +179,4 @@ data.gen.tar2<-function(nobs,ndim=9,noise=0.1)
   return(data_generated)
 }
 
-# data.gen.tar2<-function(nobs,ndim=9){
-#   #nobs<-1000;
-#   nwarm1=nwarm2=30
-#   n=nobs+nwarm1+nwarm2
-#   x<-matrix(0,n,1)
-#   for (i in 1:nwarm1) {
-#     x[i]<-rnorm(1,mean=0,sd=1)
-#   }
-#   dp<-matrix(0,(nobs),ndim)
-#   for (i in (nwarm1+1):n){
-#     eps<-rnorm(1,mean=0,sd=1)
-#     xi2=x[i-2]
-#     if(xi2<0) x[i]<- 0.6*x[i-1]-0.1*x[i-2]+eps else x[i]= -1.1**x[i-1]+eps
-#   }
-#   for(i in 1:ndim) dp[,i]=x[(n-i-nobs+1):(n-i)]
-#   x=x[(n-nobs+1):n]
-#   data_generated<-list(x=x,dp=dp)
-#   return(data_generated)
-# }
 

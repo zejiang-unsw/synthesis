@@ -28,7 +28,7 @@ data.gen.tar<-function(nobs,ndim=9,phi1=c(0.6,-0.1),phi2=c(-1.1,0),theta=0,d=2,p
 {
   if(length(phi1)!=p) stop("wrong dimension of p!")
 
-  nwarm1=nwarm2=50
+  nwarm1=nwarm2=250
   n=nobs+nwarm1+nwarm2
   x<-matrix(0,n,1)
   for (i in 1:nwarm1){

@@ -9,7 +9,8 @@ data.gen.Rossler(
   b = 0.2,
   w = 5.7,
   start = c(-2, -10, 0.2),
-  time = seq(0, 50, length.out = 1000)
+  time = seq(0, 50, length.out = 1000),
+  s
 )
 }
 \arguments{
@@ -23,7 +24,9 @@ data.gen.Rossler(
 Default: c(-2, -10, 0.2).}
 
 \item{time}{The temporal interval at which the system will be generated.
-Default: time=seq(0,50,length.out = 5000).}
+Default: time=seq(0,50,by=0.01) or time = seq(0,by=0.01,length.out = 1000)}
+
+\item{s}{The level of noise, default 0.}
 }
 \value{
 A list with four vectors named \emph{time}, \emph{x}, \emph{y}
@@ -48,11 +51,6 @@ Some initial values may lead to an unstable system that will tend to infinity.
 ###synthetic example - Rossler
 ts.r <- data.gen.Rossler(a = 0.2, b = 0.2, w = 5.7, start = c(-2, -10, 0.2),
                 time = seq(0, 50, length.out = 1000))
-
-#add noise
-ts.r$x <- ts(ts.r$x + rnorm(length(ts.r$time),mean=0, sd=1))
-ts.r$y <- ts(ts.r$y + rnorm(length(ts.r$time),mean=0, sd=1))
-ts.r$z <- ts(ts.r$z + rnorm(length(ts.r$time),mean=0, sd=1))
 
 ts.plot(ts.r$x,ts.r$y,ts.r$z, col=c("black","red","blue"))
 }

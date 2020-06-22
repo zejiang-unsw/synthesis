@@ -1,6 +1,6 @@
 Package: synthesis
 Title: Generate synthetic data from statistical models
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
     person(given = "Ze",
            family = "Jiang",
@@ -11,6 +11,9 @@ Description: Generate synthetic time series from commonly used statistical model
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    MASS
 Suggests: 
     testthat
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
+

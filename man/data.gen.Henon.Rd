@@ -5,22 +5,25 @@
 \title{Henon map}
 \usage{
 data.gen.Henon(
-  start = runif(min = -0.5, max = 0.5, n = 2),
+  nobs = 5000,
   a = 1.4,
   b = 0.3,
-  n.sample = 5000,
+  start = runif(min = -0.5, max = 0.5, n = 2),
+  s,
   do.plot = TRUE
 )
 }
 \arguments{
-\item{start}{A 2-dimensional vector indicating the starting values for the x and y Henon coordinates.
-Default: If the starting point is not specified, it is generated randomly.}
+\item{nobs}{Length of the generated time series. Default: 5000 samples.}
 
 \item{a}{The \emph{a} parameter. Default: 1.4.}
 
 \item{b}{The \emph{b} parameter. Default: 0.3.}
 
-\item{n.sample}{Length of the generated time series. Default: 5000 samples.}
+\item{start}{A 2-dimensional vector indicating the starting values for the x and y Henon coordinates.
+Default: If the starting point is not specified, it is generated randomly.}
+
+\item{s}{The level of noise, default 0.}
 
 \item{do.plot}{Logical value. If TRUE (default value), a plot of the generated Henon system is shown.}
 }
@@ -43,7 +46,7 @@ time series.
 Some initial values may lead to an unstable system that will tend to infinity.
 }
 \examples{
-Henon.map=data.gen.Henon(n.sample = 1000, do.plot=TRUE)
+Henon.map=data.gen.Henon(nobs = 1000, do.plot=TRUE)
 }
 \references{
 Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries

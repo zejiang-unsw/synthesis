@@ -2,36 +2,28 @@
 % Please edit documentation in R/data_gen_SW.R
 \name{data.gen.SW}
 \alias{data.gen.SW}
-\title{Generate predictor and response data: Sinewave model}
+\title{Generate predictor and response data: sinusoidal model}
 \usage{
-data.gen.SW(nobs = 512, fp = 25, fd, sd.x = 0.1, sd.y = 0.1)
+data.gen.SW(nobs = 512, fp = 50, fd = 50, sd = 1)
 }
 \arguments{
 \item{nobs}{The data length to be generated.}
 
-\item{fp}{The frequencies in the generated response.}
+\item{fp}{The frequencies in the generated response. Default fp=50.}
 
-\item{fd}{A vector of frequencies for potential predictors. fd = c(3,5,10,15,25,30,55,70,95) used in the WRR paper.}
+\item{fd}{A vector of frequencies for potential predictors. Default fd=50.}
 
-\item{sd.x}{The noise level in the predictor.}
-
-\item{sd.y}{The noise level in the response.}
+\item{sd}{The noise level in the predictor.}
 }
 \value{
-A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
+
 }
 \description{
-Generate predictor and response data: Sinewave model
+Generate predictor and response data: sinusoidal model
 }
 \examples{
-###synthetic example
-#frequency, sampled from a given range
-fd <- c(3,5,10,15,25,30,55,70,95)
 
-data.SW1 <- data.gen.SW(nobs=512,fp=25,fd=fd)
-data.SW3 <- data.gen.SW(nobs=512,fp=c(15,25,30),fd=fd)
-
-ts.plot(ts(data.SW1$x),ts(data.SW3$x),col=c("black","red"))
-plot.ts(cbind(data.SW1$x,data.SW1$dp))
-plot.ts(cbind(data.SW3$x,data.SW3$dp))
+}
+\references{
+Shumway, R. H., & Stoffer, D. S. (2011). Characteristics of Time Series. In D. S. Stoffer (Ed.), Time series analysis and its applications (pp. 8-14). New York : Springer.
 }

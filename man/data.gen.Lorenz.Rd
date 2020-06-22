@@ -9,7 +9,8 @@ data.gen.Lorenz(
   beta = 8/3,
   rho = 28,
   start = c(-13, -14, 47),
-  time = seq(0, 50, length.out = 1000)
+  time = seq(0, 50, length.out = 1000),
+  s
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ Default: c(-13, -14, 47).}
 
 \item{time}{The temporal interval at which the system will be generated.
 Default: time=seq(0,50,by = 0.01).}
+
+\item{s}{The level of noise, default 0.}
 }
 \value{
 A list with four vectors named \emph{time}, \emph{x}, \emph{y}
@@ -45,7 +48,15 @@ produce a deterministic chaotic time series.
 Some initial values may lead to an unstable system that will tend to infinity.
 }
 \examples{
+###Synthetic example - Rossler
+ts.l <- data.gen.Lorenz(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
+                        time = seq(0, by=0.05, length.out = 2000))
 
+zlim <- c(floor(min(ts.l$z)),ceiling(max(ts.l$z)))
+plot3D::scatter3D(ts.l$x,ts.l$y,ts.l$z, phi = 0, cex=0.5, zlim=zlim,
+                  col = "blue", ticktype = "detailed")
+
+ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c("black","red","blue"))
 }
 \references{
 Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries
