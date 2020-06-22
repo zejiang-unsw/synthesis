@@ -3,11 +3,11 @@
 
 ## Requirements
 <pre>
-Dependencies:\
+Dependencies:
   stats,
   MASS
 
-Suggest:\
+Suggest:
   testthat
 </pre>
 
