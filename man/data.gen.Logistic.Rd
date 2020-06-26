@@ -37,3 +37,6 @@ The logistic map is defined as follows:
 \examples{
 Logistic.map=data.gen.Logistic(nobs = 1000, do.plot=TRUE)
 }
+\references{
+Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries
+}

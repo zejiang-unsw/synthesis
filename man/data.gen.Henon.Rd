@@ -8,7 +8,7 @@ data.gen.Henon(
   nobs = 5000,
   a = 1.4,
   b = 0.3,
-  start = runif(min = -0.5, max = 0.5, n = 2),
+  start = runif(n = 2, min = -0.5, max = 0.5),
   s,
   do.plot = TRUE
 )

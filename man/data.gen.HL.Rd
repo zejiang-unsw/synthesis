@@ -5,12 +5,12 @@
 \title{Generate predictor and response data: Hysteresis Loop}
 \usage{
 data.gen.HL(
+  nobs = 512,
   a = 0.8,
   b = 0.6,
   c = 0.2,
   m = 3,
   n = 5,
-  nobs = 512,
   fp = 25,
   fd,
   sd.x = 0.1,
@@ -18,6 +18,8 @@ data.gen.HL(
 )
 }
 \arguments{
+\item{nobs}{The data length to be generated.}
+
 \item{a}{The \emph{a} parameter. Default: 0.8.}
 
 \item{b}{The \emph{b} parameter. Default: 0.6.}
@@ -29,8 +31,6 @@ If m=1, split line is linear; If m is even, split line has a u shape;
 If m is odd and higher than 1, split line has a chair or classical shape.}
 
 \item{n}{Positive odd integer for the bulging parameter, indicates degree of outward curving (1=highest level of bulging).}
-
-\item{nobs}{The data length to be generated.}
 
 \item{fp}{The frequency in the generated response. fp = 25 used in the WRR paper.}
 

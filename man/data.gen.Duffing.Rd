@@ -8,7 +8,7 @@ data.gen.Duffing(
   nobs = 5000,
   a = 2.75,
   b = 0.2,
-  start = runif(min = -0.5, max = 0.5, n = 2),
+  start = runif(n = 2, min = -0.5, max = 0.5),
   s,
   do.plot = TRUE
 )

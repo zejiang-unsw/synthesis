@@ -150,7 +150,7 @@ data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14
 #' @examples
 #' Duffing.map=data.gen.Duffing(nobs = 1000, do.plot=TRUE)
 
-data.gen.Duffing <- function(nobs = 5000, a = 2.75, b = 0.2, start = runif(min = -0.5, max = 0.5, n = 2), s,
+data.gen.Duffing <- function(nobs = 5000, a = 2.75, b = 0.2, start = runif(n = 2, min = -0.5, max = 0.5), s,
                              do.plot=TRUE) {
   nwarm=500
   n = nobs + nwarm
@@ -209,7 +209,7 @@ data.gen.Duffing <- function(nobs = 5000, a = 2.75, b = 0.2, start = runif(min =
 #' @examples
 #' Henon.map=data.gen.Henon(nobs = 1000, do.plot=TRUE)
 
-data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(min = -0.5, max = 0.5, n = 2), s,
+data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(n = 2, min = -0.5, max = 0.5), s,
                            do.plot=TRUE) {
   nwarm=500
   n = nobs + nwarm
@@ -255,6 +255,8 @@ data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(min = -0
 #'
 #' @return
 #' @export
+#'
+#' @references Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries
 #'
 #' @examples
 #' Logistic.map=data.gen.Logistic(nobs = 1000, do.plot=TRUE)
