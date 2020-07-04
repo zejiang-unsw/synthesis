@@ -12,6 +12,7 @@ bibliography: ../inst/synthesis.bib
 ---
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE) # suppress un-needed warning
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
