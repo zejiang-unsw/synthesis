@@ -18,6 +18,6 @@ Imports:
     MASS
 Suggests: 
     knitr,
-    testthat,
+    testthat
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr
