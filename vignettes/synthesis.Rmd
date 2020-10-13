@@ -1,8 +1,8 @@
 ---
 title: "synthesis: An R package for generating synthetic datasets"
 output:
-  rmarkdown::html_vignette: default
-#  bookdown::html_vignette2: default
+#  rmarkdown::html_vignette: default
+  bookdown::html_vignette2: default
 vignette: >
   %\VignetteIndexEntry{synthesis}
   %\VignetteEngine{knitr::rmarkdown}

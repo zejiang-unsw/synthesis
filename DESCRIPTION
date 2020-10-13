@@ -1,6 +1,6 @@
 Package: synthesis
 Title: Generate synthetic data from statistical models
-Version: 1.1.0
+Version: 2.0.0
 Authors@R: 
     person(given = "Ze",
            family = "Jiang",
