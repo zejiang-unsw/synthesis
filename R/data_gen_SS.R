@@ -10,6 +10,7 @@
 #' @param nobs  The data length to be generated.
 #' @param start A numeric value indicating the starting value for the time series.
 #' If the starting point is not specified, it is generated randomly.
+#' @param do.plot Logical value. If TRUE (default value), a plot of the generated LGSS system is shown.
 #'
 #' @return A list of two variables, state and response.
 #' @export

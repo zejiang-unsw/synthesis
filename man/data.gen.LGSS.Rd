@@ -18,6 +18,8 @@ data.gen.LGSS(
 
 \item{start}{A numeric value indicating the starting value for the time series.
 If the starting point is not specified, it is generated randomly.}
+
+\item{do.plot}{Logical value. If TRUE (default value), a plot of the generated LGSS system is shown.}
 }
 \value{
 A list of two variables, state and response.

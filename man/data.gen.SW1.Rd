@@ -24,14 +24,5 @@ A list of 3 elements: a vector of response (x), a matrix of potential predictors
 Generate predictor and response data: sinusoidal model
 }
 \examples{
-###synthetic example
-#frequency, sampled from a given range
-fd <- c(3,5,10,15,25,30,55,70,95)
 
-data.SW1 <- data.gen.SW(nobs=512,fp=25,fd=fd)
-data.SW3 <- data.gen.SW(nobs=512,fp=c(15,25,30),fd=fd)
-
-ts.plot(ts(data.SW1$x),ts(data.SW3$x),col=c("black","red"))
-plot.ts(cbind(data.SW1$x,data.SW1$dp))
-plot.ts(cbind(data.SW3$x,data.SW3$dp))
 }

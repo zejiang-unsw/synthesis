@@ -14,7 +14,6 @@
 #' Generate Random walk time series.
 #'
 #' @param nobs    the data length to be generated
-#' @param ndim    The number of potential predictors (default is 9)
 #' @param drift   drift
 #' @param sd      the white noise in the data
 #'

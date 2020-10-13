@@ -9,11 +9,15 @@
 #'
 #' @examples
 #' ###synthetic example - Friedman
-#' data.fm1 <- data.gen.fm1(nobs=sample, ndim = 9, noise = 0) #Friedman with independent uniform variates
-#' data.fm2 <- data.gen.fm2(nobs=sample, ndim = 9, r = 0.6, noise = 0) #Friedman with correlated uniform variates
+#' #Friedman with independent uniform variates
+#' data.fm1 <- data.gen.fm1(nobs=1000, ndim = 9, noise = 0)
 #'
-#' zoo::plot.zoo(cbind(data.fm1$x,data.fm2$x), col=c("red","blue"), ylab=c("Friedman with \n independent uniform variates","Friedman with \n correlated uniform variates"),
-#'               main=NA, xlab=NA)
+#' #Friedman with correlated uniform variates
+#' data.fm2 <- data.gen.fm2(nobs=1000, ndim = 9, r = 0.6, noise = 0)
+#'
+#' plot.ts(cbind(data.fm1$x,data.fm2$x), col=c("red","blue"), main=NA, xlab=NA,
+#'         ylab=c("Friedman with \n independent uniform variates",
+#'         "Friedman with \n correlated uniform variates"))
 
 data.gen.fm1<-function(nobs,ndim=9,noise=1){
   #nobs<-1000;ndim=9;noise=1
@@ -56,11 +60,15 @@ data.gen.fm1<-function(nobs,ndim=9,noise=1){
 #'
 #' @examples
 #' ###synthetic example - Friedman
-#' data.fm1 <- data.gen.fm1(nobs=sample, ndim = 9, noise = 0) #Friedman with independent uniform variates
-#' data.fm2 <- data.gen.fm2(nobs=sample, ndim = 9, r = 0.6, noise = 0) #Friedman with correlated uniform variates
+#' #Friedman with independent uniform variates
+#' data.fm1 <- data.gen.fm1(nobs=1000, ndim = 9, noise = 0)
 #'
-#' zoo::plot.zoo(cbind(data.fm1$x,data.fm2$x), col=c("red","blue"), ylab=c("Friedman with \n independent uniform variates","Friedman with \n correlated uniform variates"),
-#'               main=NA, xlab=NA)
+#' #Friedman with correlated uniform variates
+#' data.fm2 <- data.gen.fm2(nobs=1000, ndim = 9, r = 0.6, noise = 0)
+#'
+#' plot.ts(cbind(data.fm1$x,data.fm2$x), col=c("red","blue"), main=NA, xlab=NA,
+#'         ylab=c("Friedman with \n independent uniform variates",
+#'         "Friedman with \n correlated uniform variates"))
 
 data.gen.fm2<-function(nobs,ndim=9,r=0.6,noise=0){
   #nobs<-1000;ndim=9;noise=0;r=0.6
@@ -71,6 +79,7 @@ data.gen.fm2<-function(nobs,ndim=9,r=0.6,noise=0){
 
   # Pearson correlation
   rho <- 2 * sin(r * pi/6)
+
   #Correlation matrix
   Sigma=matrix(rep(rho,ndim*ndim),ndim); diag(Sigma) <- 1
 

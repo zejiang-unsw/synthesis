@@ -12,8 +12,6 @@ data.gen.rw(nobs, drift = 0.2, sd = 1)
 \item{drift}{drift}
 
 \item{sd}{the white noise in the data}
-
-\item{ndim}{The number of potential predictors (default is 9)}
 }
 \value{
 A list of 2 elements: random walk and random walk with drift

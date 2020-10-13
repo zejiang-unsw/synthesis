@@ -48,13 +48,9 @@ produce a deterministic chaotic time series.
 Some initial values may lead to an unstable system that will tend to infinity.
 }
 \examples{
-###Synthetic example - Rossler
+###Synthetic example - Lorenz
 ts.l <- data.gen.Lorenz(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
                         time = seq(0, by=0.05, length.out = 2000))
-
-zlim <- c(floor(min(ts.l$z)),ceiling(max(ts.l$z)))
-plot3D::scatter3D(ts.l$x,ts.l$y,ts.l$z, phi = 0, cex=0.5, zlim=zlim,
-                  col = "blue", ticktype = "detailed")
 
 ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c("black","red","blue"))
 }

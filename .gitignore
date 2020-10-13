@@ -36,4 +36,3 @@ vignettes/*.pdf
 *.knit.md
 
 /tests/
-inst/doc

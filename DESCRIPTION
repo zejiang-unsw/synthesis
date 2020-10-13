@@ -6,18 +6,17 @@ Authors@R:
            family = "Jiang",
            role = c("aut", "cre"),
            email = "ze.jiang@unsw.edu.au",
-           comment = c(ORCID = "0002-3472-0829"))
-Author: Ze Jiang [aut, cre] (<https://orcid.org/0000-0002-3472-0829>)
+           comment = c(ORCID = "0000-0002-3472-0829"))
 Maintainer: Ze Jiang <ze.jiang@unsw.edu.au>
 Description: Generate synthetic time series from commonly used statistical models, including linear, nonlinear and chaotic systems. 
-License: GPL-3
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
     stats,
     MASS
 Suggests: 
-    knitr,
-    testthat
-RoxygenNote: 7.1.0
+    knitr, testthat, rmarkdown, devtools, 
+    NPRED, WASP, Spectrum, plot3D, readr, zoo, ForecastComb, forecast, lattice
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr

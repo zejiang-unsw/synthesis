@@ -1,27 +1,40 @@
 ---
 title: "synthesis: An R package for generating synthetic datasets"
-output: 
-#  rmarkdown::html_vignette: default
-  bookdown::html_vignette2: default
+output:
+  rmarkdown::html_vignette: default
+#  bookdown::html_vignette2: default
 vignette: >
   %\VignetteIndexEntry{synthesis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  
 bibliography: ../inst/synthesis.bib
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
-options(rmarkdown.html_vignette.check_title = FALSE) # suppress un-needed warning
+#options(rmarkdown.html_vignette.check_title = FALSE) # suppress un-needed warning
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+                      collapse = TRUE,
+                      comment = "#>"
 )
+
+#library(tinytex) # to generate PDF output if you never use Latex before
+# tinytex::install_tinytex()  # install TinyTeX
+# tinytex:::is_tinytex()
 ```
 
 ```{r load-packages, include=FALSE}
 # devtools::install_github("zejiang-unsw/WASP", dependencies = TRUE)
 # devtools::install_github("zejiang-unsw/NPRED")
+# devtools::install_github("zejiang-unsw/synthesis")
+if(!require("lattice")) install.packages("lattice", repos = "http://cran.us.r-project.org", dependencies = c("Depends", "Imports", "Suggests"))
+if(!require("forecast")) install.packages("forecast", repos = "http://cran.us.r-project.org", dependencies = c("Depends", "Imports", "Suggests"))
+
+if(!require("WASP")) devtools::install_github("zejiang-unsw/WASP", dependencies = TRUE)
+if(!require("NPRED")) devtools::install_github("zejiang-unsw/NPRED")
+
+
 require(WASP)
 require(NPRED)
 require(Spectrum)
@@ -260,7 +273,7 @@ where $a$, $b$ and $c$ are parameters that specify the chaotic system. We invest
 
 ```{r mod4, fig.cap='Example of Rossler system: Phase portraits in a 2D projection of its state space', fig.height=5, fig.width=9, out.width= '100%'}
 ###Synthetic example - Rossler
-ts.r <- data.gen.Rossler(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
+ts.r <- synthesis::data.gen.Rossler(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
                          time = seq(0, 50, length.out = 1000), s=0)
 
 par(mfrow=c(1,2), ps=12, cex.lab=1.5)

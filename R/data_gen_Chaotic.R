@@ -1,17 +1,26 @@
-#' Rossler system
+#' Rössler system
 #' @description
 #' Generates a 3-dimensional time series using the Rossler equations.
 #' @details
-#' The Rossler system is a system of ordinary differential equations defined as:
+#' The Rössler system is a system of ordinary differential equations defined as:
 #' \deqn{\dot{x} = -(y + z)}{dx/dt = -(y + z)}
 #' \deqn{\dot{y} = x+a \cdot y}{dy/dt = x + a*y}
 #' \deqn{\dot{z} = b + z*(x-w)}{dz/dt = b + z*(x-w)}
 #' The default selection for the system parameters (\emph{a} = 0.2, \emph{b} = 0.2, \emph{w} = 5.7) is known to
-#' produce a deterministic chaotic time series.
+#' produce a deterministic chaotic time series. However, the values a = 0.1, b = 0.1, and c = 14 are more commonly used.
+#' These Rössler equations are simpler than those Lorenz used since only one nonlinear term appears (the product xz in the third equation).
+#'
+#' Here, a = b = 0.1 and c changes. The bifurcation diagram reveals that low values of c are periodic,
+#' but quickly become chaotic as c increases. This pattern repeats itself as c increases ---
+#' there are sections of periodicity interspersed with periods of chaos,
+#' and the trend is towards higher-period orbits as c increases.
+#' For example, the period one orbit only appears for values of c around 4
+#' and is never found again in the bifurcation diagram. The same phenomenon is seen with period three;
+#' until c = 12, period three orbits can be found, but thereafter, they do not appear.
 #'
 #' @param start A 3-dimensional numeric vector indicating the starting point for the time series.
 #' Default: c(-2, -10, 0.2).
-#' @param a The \emph{a} parameter. Default:0.2.
+#' @param a The \emph{a} parameter. Default: 0.2.
 #' @param b The \emph{b} parameter. Default: 0.2.
 #' @param w The \emph{w} parameter. Default: 5.7.
 #' @param time The temporal interval at which the system will be generated.
@@ -20,22 +29,29 @@
 #'
 #' @return A list with four vectors named \emph{time}, \emph{x}, \emph{y}
 #' and \emph{z} containing the time, the x-components, the
-#' y-components and the z-components of the Rossler system, respectively.
+#' y-components and the z-components of the Rössler system, respectively.
 #' @export
 #'
 #' @note Some initial values may lead to an unstable system that will tend to infinity.
-#' @references RÖSSLER, O. E. 1976. An equation for continuous chaos. Physics Letters A, 57, 397-398.
+#' @references Rössler, O. E. 1976. An equation for continuous chaos. Physics Letters A, 57, 397-398.
 #' @references Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries
+#' @references wikipedia https://en.wikipedia.org/wiki/R%C3%B6ssler_attractor
 #'
 #' @examples
-#' ###synthetic example - Rossler
-#' ts.r <- data.gen.Rossler(a = 0.2, b = 0.2, w = 5.7, start = c(-2, -10, 0.2),
-#'                 time = seq(0, 50, length.out = 1000))
+#' ###synthetic example - Rössler
 #'
-#' ts.plot(ts.r$x,ts.r$y,ts.r$z, col=c("black","red","blue"))
+#' ts.r <- data.gen.Rossler(a = 0.1, b = 0.1, w = 8.7, start = c(-2, -10, 0.2),
+#'                          time = seq(0, by=0.05, length.out = 10000))
+#'
+#' par(mfrow=c(1,1), ps=12, cex.lab=1.5)
+#' plot.ts(cbind(ts.r$x,ts.r$y,ts.r$z), col=c("black","red","blue"))
+#'
+#' par(mfrow=c(1,2), ps=12, cex.lab=1.5)
+#' plot(ts.r$x,ts.r$y, xlab="x",ylab = "y", type = "l")
+#' plot(ts.r$x,ts.r$z, xlab="x",ylab = "z", type = "l")
 
 data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
-                             time = seq(0, 50, length.out = 1000), s) {
+                             time = seq(0, by=0.05, length.out = 1000), s) {
   params = c(a, b, w)
   rosslerEquations = function(coord, t, params) {
     x = coord[[1]]
@@ -87,13 +103,9 @@ data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
 #' @export
 #'
 #' @examples
-#' ###Synthetic example - Rossler
+#' ###Synthetic example - Lorenz
 #' ts.l <- data.gen.Lorenz(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
 #'                         time = seq(0, by=0.05, length.out = 2000))
-#'
-#' zlim <- c(floor(min(ts.l$z)),ceiling(max(ts.l$z)))
-#' plot3D::scatter3D(ts.l$x,ts.l$y,ts.l$z, phi = 0, cex=0.5, zlim=zlim,
-#'                   col = "blue", ticktype = "detailed")
 #'
 #' ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c("black","red","blue"))
 
