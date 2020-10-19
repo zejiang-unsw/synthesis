@@ -5,7 +5,9 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 2 note
+0 errors | 0 warnings | 3 note
+* checking package dependencies ... NOTE
+  Packages suggested but not available for checking: 'NPRED', 'WASP'
 
 * checking Rd files ... NOTE
   Dropping empty section \value and \examples
