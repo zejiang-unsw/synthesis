@@ -18,13 +18,10 @@ data.gen.unif(n, ndim = 9, r = 0.6, sigma, method = c("pearson", "spearman"))
 \item{method}{The target correlation type, inluding Pearson and Spearman correlation.}
 }
 \value{
-
+A matrix of correlated uniform variates
 }
 \description{
 Generate correlated uniform variates
-}
-\examples{
-
 }
 \references{
 Schumann, E. (2009). Generating correlated uniform variates. COMISEF. http://comisef. wikidot. com/tutorial: correlateduniformvariates.

@@ -16,11 +16,20 @@ data.gen.nl1(nobs, ndim = 15, r = 0.6, noise = 1)
 \item{noise}{The noise level in the time series.}
 }
 \value{
-
+A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 }
 \description{
 Nonlinear system with independent/correlate covariates
 }
 \examples{
+###synthetic example - Friedman
+#Friedman with independent uniform variates
+data.nl1 <- data.gen.nl1(nobs=1000)
 
+#Friedman with correlated uniform variates
+data.nl2 <- data.gen.nl2(nobs=1000)
+
+plot.ts(cbind(data.nl1$x,data.nl2$x), col=c("red","blue"), main=NA, xlab=NA,
+        ylab=c("Nonlinear system with \n independent uniform variates",
+        "Nonlinear system with \n correlated uniform variates"))
 }

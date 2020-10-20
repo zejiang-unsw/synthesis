@@ -265,7 +265,7 @@ data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(n = 2, m
 #' @param s The level of noise, default 0.
 #' @param do.plot Logical value. If TRUE (default value), a plot of the generated Logistic system is shown.
 #'
-#' @return
+#' @return A vector of time series.
 #' @export
 #'
 #' @references Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries

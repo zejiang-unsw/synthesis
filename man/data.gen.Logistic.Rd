@@ -25,7 +25,7 @@ If the starting point is not specified, it is generated randomly.}
 \item{do.plot}{Logical value. If TRUE (default value), a plot of the generated Logistic system is shown.}
 }
 \value{
-
+A vector of time series.
 }
 \description{
 Generates a time series using the logistic map.

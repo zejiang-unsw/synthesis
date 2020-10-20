@@ -16,7 +16,7 @@ data.gen.fm2(nobs, ndim = 9, r = 0.6, noise = 0)
 \item{noise}{The noise level in the time series.}
 }
 \value{
-
+A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 }
 \description{
 Friedman with correlated uniform variates

@@ -4,7 +4,7 @@
 #' @param ndim  The number of potential predictors (default is 9).
 #' @param noise The noise level in the time series.
 #'
-#' @return
+#' @return A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 #' @export
 #'
 #' @examples
@@ -55,7 +55,7 @@ data.gen.fm1<-function(nobs,ndim=9,noise=1){
 #' @param r     Target Spearman correlation.
 #' @param noise The noise level in the time series.
 #'
-#' @return
+#' @return A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 #' @export
 #'
 #' @examples

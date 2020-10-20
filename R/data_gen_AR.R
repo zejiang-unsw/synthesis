@@ -18,6 +18,7 @@
 #'
 #' @return A list of 2 elements: a vector of response (x), and a matrix of potential predictors (dp) with each column containing one potential predictor.
 #' @export
+#' @import stats
 #'
 #' @examples
 #' # AR1 model from paper with 9 dummy variables

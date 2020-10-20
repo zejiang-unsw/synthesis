@@ -6,11 +6,20 @@
 #' @param r     Target Spearman correlation among covariates.
 #' @param noise The noise level in the time series.
 #'
-#' @return
+#' @return A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 #' @export
 #'
 #' @examples
+#' ###synthetic example - Friedman
+#' #Friedman with independent uniform variates
+#' data.nl1 <- data.gen.nl1(nobs=1000)
 #'
+#' #Friedman with correlated uniform variates
+#' data.nl2 <- data.gen.nl2(nobs=1000)
+#'
+#' plot.ts(cbind(data.nl1$x,data.nl2$x), col=c("red","blue"), main=NA, xlab=NA,
+#'         ylab=c("Nonlinear system with \n independent uniform variates",
+#'         "Nonlinear system with \n correlated uniform variates"))
 data.gen.nl1<-function(nobs,ndim=15,r=0.6,noise=1){
   #nobs<-1000;ndim=9;noise=1;r=0.6
   nwarm=500
@@ -41,13 +50,22 @@ data.gen.nl1<-function(nobs,ndim=15,r=0.6,noise=1){
 #' @param ndim  The number of potential predictors (default is 9).
 #' @param noise The noise level in the time series.
 #'
-#' @return
+#' @return A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 #' @export
 #'
 #' @references Sharma, A., & Mehrotra, R. (2014). An information theoretic alternative to model a natural system using observational information alone. Water Resources Research, 50(1), 650-660.
 #'
 #' @examples
+#' ###synthetic example - Friedman
+#' #Friedman with independent uniform variates
+#' data.nl1 <- data.gen.nl1(nobs=1000)
 #'
+#' #Friedman with correlated uniform variates
+#' data.nl2 <- data.gen.nl2(nobs=1000)
+#'
+#' plot.ts(cbind(data.nl1$x,data.nl2$x), col=c("red","blue"), main=NA, xlab=NA,
+#'         ylab=c("Nonlinear system with \n independent uniform variates",
+#'         "Nonlinear system with \n correlated uniform variates"))
 data.gen.nl2<-function(nobs,ndim=7,noise=1){
   #nobs<-1000;ndim=9;noise=0
   nwarm=500

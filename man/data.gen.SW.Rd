@@ -16,13 +16,10 @@ data.gen.SW(nobs = 512, fp = 50, fd = 50, sd = 1)
 \item{sd}{The noise level in the predictor.}
 }
 \value{
-
+A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 }
 \description{
 Generate predictor and response data: sinusoidal model
-}
-\examples{
-
 }
 \references{
 Shumway, R. H., & Stoffer, D. S. (2011). Characteristics of Time Series. In D. S. Stoffer (Ed.), Time series analysis and its applications (pp. 8-14). New York : Springer.

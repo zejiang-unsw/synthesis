@@ -23,6 +23,3 @@ A list of 3 elements: a vector of response (x), a matrix of potential predictors
 \description{
 Generate predictor and response data: sinusoidal model
 }
-\examples{
-
-}

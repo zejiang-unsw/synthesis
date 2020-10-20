@@ -5,11 +5,9 @@
 #' @param fd      A vector of frequencies for potential predictors. Default fd=50.
 #' @param sd      The noise level in the predictor.
 #'
-#' @return
+#' @return A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
 #'
 #' @references Shumway, R. H., & Stoffer, D. S. (2011). Characteristics of Time Series. In D. S. Stoffer (Ed.), Time series analysis and its applications (pp. 8-14). New York : Springer.
-#'
-#' @examples
 #'
 data.gen.SW<-function(nobs=512,fp=50,fd=50,sd=1)
 {
@@ -44,8 +42,6 @@ data.gen.SW<-function(nobs=512,fp=50,fd=50,sd=1)
 #' @param sd.y    The noise level in the response.
 #'
 #' @return A list of 3 elements: a vector of response (x), a matrix of potential predictors (dp) with each column containing one potential predictor, and a vector of true predictor numbers.
-#'
-#' @examples
 #'
 data.gen.SW1<-function(nobs=512,fp=25,fd,sd.x=0.1,sd.y=0.1)
 {

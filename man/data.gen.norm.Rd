@@ -18,11 +18,8 @@ data.gen.norm(n, mu = rep(0, 2), sd = rep(1, 2), r = 0.6, sigma)
 \item{sigma}{A positive-definite symmetric matrix specifying the covariance matrix of the variables.}
 }
 \value{
-
+A matrix of correlated normal variates
 }
 \description{
 Generate correlated normal variates
-}
-\examples{
-
 }
