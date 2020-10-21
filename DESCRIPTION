@@ -1,5 +1,5 @@
 Package: synthesis
-Title: Generate synthetic data from statistical models
+Title: Generate Synthetic Data from Statistical Models
 Version: 1.1.1
 Authors@R: 
     person(given = "Ze",
@@ -9,8 +9,8 @@ Authors@R:
            comment = c(ORCID = "0000-0002-3472-0829"))
 Author: Ze Jiang [aut, cre] (<https://orcid.org/0000-0002-3472-0829>)
 Maintainer: Ze Jiang <ze.jiang@unsw.edu.au>
-Description: Generate synthetic time series from commonly used statistical models, including linear, nonlinear and chaotic systems. 
-License: GPL-3 + file LICENSE
+Description: Generate synthetic time series from commonly used statistical models, including linear, nonlinear and chaotic systems. An application to testing a new method can be found in Jiang, Z., Sharma, A., & Johnson, F. (2020) <doi:10.1029/2019WR026962> associated with an open-source tool by Jiang, Z., Rashid, M. M., Johnson, F., & Sharma, A. (2020) <doi:10.1016/j.envsoft.2020.104907>.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: 
