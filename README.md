@@ -18,6 +18,12 @@ You can install the package via devtools from [GitHub](https://github.com/) with
 devtools::install_github("zejiang-unsw/synthesis")
 ```
 
+or via CRAN with: 
+
+``` r
+install.packages("synthesis")
+```
+
 ## Citation
 Jiang, Z., Sharma, A., & Johnson, F. (2020). Refining Predictor Spectral Representation Using Wavelet Theory for Improved Natural System Modeling. Water Resources Research, 56(3), e2019WR026962. doi:https://doi.org/10.1029/2019WR026962
 
