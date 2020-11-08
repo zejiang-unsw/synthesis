@@ -25,6 +25,9 @@ install.packages("synthesis")
 ```
 
 ## Citation
+
+Jiang, Z., Rashid, M. M., Johnson, F., & Sharma, A. (2020). A wavelet-based tool to modulate variance in predictors: an application to predicting drought anomalies. Environmental Modelling & Software, 135, 104907. https://doi.org/10.1016/j.envsoft.2020.104907
+
 Jiang, Z., Sharma, A., & Johnson, F. (2020). Refining Predictor Spectral Representation Using Wavelet Theory for Improved Natural System Modeling. Water Resources Research, 56(3), e2019WR026962. doi:https://doi.org/10.1029/2019WR026962
 
 Galelli, S., et al. (2014). "An evaluation framework for input variable selection algorithms for environmental data-driven models." Environmental Modelling and Software 62: 33-51.
