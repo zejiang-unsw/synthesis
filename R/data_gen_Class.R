@@ -121,8 +121,8 @@ data.gen.1spiral <- function(n, cycles=1, sd=0) {
   w <- seq(0, by=cycles/n, length=n)
   x <- matrix(0, nrow=n, ncol=2)
 
-  x[,1] <- (2*w+1)*cos(2*pi*w)/3;
-  x[,2] <- (2*w+1)*sin(2*pi*w)/3;
+  x[,1] <- (2*w+1)*cos(2*pi*w)/3
+  x[,2] <- (2*w+1)*sin(2*pi*w)/3
 
   if(sd>0){
     eps <- rnorm(n, sd=sd)
