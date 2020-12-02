@@ -1,16 +1,3 @@
-# An autoregressive model of order p, AR(p), can be written as
-# yt=c+ϕ1y_t−1+ϕ2y_t−2+⋯+ϕpy_t−p+εt,
-# where εt is white noise.
-# For an AR(1) model:
-# •	when ϕ1=0, yt is equivalent to white noise;
-# •	when ϕ1=1 and c=0, yt is equivalent to a random walk;
-# •	when ϕ1=1 and c≠0, yt is equivalent to a random walk with drift;
-# •	when ϕ1<0, yt tends to oscillate around the mean.
-# We normally restrict autoregressive models to stationary data, in which case some constraints on the values of the parameters are required.
-# •	For an AR(1) model: −1<ϕ1<1.
-# •	For an AR(2) model: −1<ϕ2<1, ϕ1+ϕ2<1, ϕ2−ϕ1<1.
-# When p≥3, the restrictions are much more complicated. R takes care of these restrictions when estimating a model.
-
 #' Generate predictor and response data from AR1 model.
 #'
 #' @param nobs The data length to be generated.
