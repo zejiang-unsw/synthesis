@@ -25,5 +25,5 @@ data.tar1<-data.gen.tar1(500)
 plot.ts(cbind(data.tar1$x,data.tar1$dp))
 }
 \references{
-Sharma, A. (2000). Seasonal to interannual rainfall probabilistic forecasts for improved water supply management: Part 1—A strategy for system predictor identification. Journal of Hydrology, 239(1-4), 232-239.
+Sharma, A. (2000). Seasonal to interannual rainfall probabilistic forecasts for improved water supply management: Part 1 - A strategy for system predictor identification. Journal of Hydrology, 239(1-4), 232-239.
 }

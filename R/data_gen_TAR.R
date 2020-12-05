@@ -24,24 +24,27 @@
 #' # TAR2 model from paper with total 9 dimensions
 #' data.tar<-data.gen.tar(500)
 #' plot.ts(cbind(data.tar$x,data.tar$dp))
-data.gen.tar<-function(nobs,ndim=9,phi1=c(0.6,-0.1),phi2=c(-1.1,0),theta=0,d=2,p=2,noise=0.1)
-{
-  if(length(phi1)!=p) stop("wrong dimension of p!")
-
-  nwarm1=nwarm2=250
-  n=nobs+nwarm1+nwarm2
-  x<-matrix(0,n,1)
-  for (i in 1:nwarm1){
-    x[i]<-rnorm(1,mean=0,sd=1)
-  }
-  dp<-matrix(0,(nobs),ndim)
-  for (i in (nwarm1+1):n){
-    eps<-rnorm(1,mean=0,sd=1)
-    xid=x[i-d]
-    if(xid<theta) x[i]<- sum(phi1*x[(i - 1):(i - p)])+noise*eps else x[i]<- sum(phi2*x[(i - 1):(i - p)])+noise*eps
-  }
-  for(i in 1:ndim) dp[,i]=x[(n-i-nobs+1):(n-i)]
-  x=x[(n-nobs+1):n]
-  data_generated<-list(x=x,dp=dp,true.cpy=unique(c(which(phi1!=0),which(phi2!=0))))
-  return(data_generated)
+data.gen.tar <- function(nobs, ndim = 9, phi1 = c(0.6, -0.1), phi2 = c(-1.1, 0), 
+    theta = 0, d = 2, p = 2, noise = 0.1) {
+    if (length(phi1) != p) 
+        stop("wrong dimension of p!")
+    
+    nwarm1 <- nwarm2 <- 250
+    n <- nobs + nwarm1 + nwarm2
+    x <- matrix(0, n, 1)
+    for (i in 1:nwarm1) {
+        x[i] <- rnorm(1, mean = 0, sd = 1)
+    }
+    dp <- matrix(0, (nobs), ndim)
+    for (i in (nwarm1 + 1):n) {
+        eps <- rnorm(1, mean = 0, sd = 1)
+        xid <- x[i - d]
+        if (xid < theta) 
+            x[i] <- sum(phi1 * x[(i - 1):(i - p)]) + noise * eps else x[i] <- sum(phi2 * x[(i - 1):(i - p)]) + noise * eps
+    }
+    for (i in 1:ndim) dp[, i] <- x[(n - i - nobs + 1):(n - i)]
+    x <- x[(n - nobs + 1):n]
+    data_generated <- list(x = x, dp = dp, true.cpy = unique(c(which(phi1 != 0), 
+        which(phi2 != 0))))
+    return(data_generated)
 }

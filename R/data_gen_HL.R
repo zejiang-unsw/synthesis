@@ -31,25 +31,24 @@
 #' data.HL <- data.gen.HL(m=3,n=5,nobs=512,fp=25,fd=fd)
 #' plot.ts(cbind(data.HL$x,data.HL$dp))
 
-data.gen.HL<- function(nobs=512, a=0.8, b=0.6, c=0.2, m=3,n=5,fp=25,fd,sd.x=0.1,sd.y=0.1)
-{
-  t <- seq(0,1,length.out = nobs)
-
-  index <- which(fd %in% fp)
-  ndim <- length(fd)
-
-  dp<-matrix(0,nobs,ndim)
-  for(i in 1:ndim){
-
-    dp[,i]<- a*cos(2*pi*fd[i]*t) + rnorm(nobs,0,sd.x)
-
-  }
-
-  x<- b*cos(2*pi*fp*t)^m-c*sin(2*pi*fp*t)^n+rnorm(nobs,0,sd.y)
-
-  data_generated<-list(x=x,
-          					   dp=dp,
-          					   true.cpy=index)
-
-  return(data_generated)
+data.gen.HL <- function(nobs = 512, a = 0.8, b = 0.6, c = 0.2, m = 3, n = 5, fp = 25, 
+    fd, sd.x = 0.1, sd.y = 0.1) {
+    t <- seq(0, 1, length.out = nobs)
+    
+    index <- which(fd %in% fp)
+    ndim <- length(fd)
+    
+    dp <- matrix(0, nobs, ndim)
+    for (i in 1:ndim) {
+        
+        dp[, i] <- a * cos(2 * pi * fd[i] * t) + rnorm(nobs, 0, sd.x)
+        
+    }
+    
+    x <- b * cos(2 * pi * fp * t)^m - c * sin(2 * pi * fp * t)^n + rnorm(nobs, 0, 
+        sd.y)
+    
+    data_generated <- list(x = x, dp = dp, true.cpy = index)
+    
+    return(data_generated)
 }

@@ -29,7 +29,7 @@ data.fm1 <- data.gen.fm1(nobs=1000, ndim = 9, noise = 0)
 #Friedman with correlated uniform variates
 data.fm2 <- data.gen.fm2(nobs=1000, ndim = 9, r = 0.6, noise = 0)
 
-plot.ts(cbind(data.fm1$x,data.fm2$x), col=c("red","blue"), main=NA, xlab=NA,
-        ylab=c("Friedman with \n independent uniform variates",
-        "Friedman with \n correlated uniform variates"))
+plot.ts(cbind(data.fm1$x,data.fm2$x), col=c('red','blue'), main=NA, xlab=NA,
+        ylab=c('Friedman with \n independent uniform variates',
+        'Friedman with \n correlated uniform variates'))
 }

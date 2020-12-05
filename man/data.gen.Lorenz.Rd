@@ -52,7 +52,7 @@ Some initial values may lead to an unstable system that will tend to infinity.
 ts.l <- data.gen.Lorenz(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
                         time = seq(0, by=0.05, length.out = 2000))
 
-ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c("black","red","blue"))
+ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c('black','red','blue'))
 }
 \references{
 Constantino A. Garcia (2019). nonlinearTseries: Nonlinear Time Series Analysis. R package version 0.2.7. https://CRAN.R-project.org/package=nonlinearTseries

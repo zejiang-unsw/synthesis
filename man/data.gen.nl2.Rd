@@ -27,9 +27,9 @@ data.nl1 <- data.gen.nl1(nobs=1000)
 #Friedman with correlated uniform variates
 data.nl2 <- data.gen.nl2(nobs=1000)
 
-plot.ts(cbind(data.nl1$x,data.nl2$x), col=c("red","blue"), main=NA, xlab=NA,
-        ylab=c("Nonlinear system with \n independent uniform variates",
-        "Nonlinear system with \n correlated uniform variates"))
+plot.ts(cbind(data.nl1$x,data.nl2$x), col=c('red','blue'), main=NA, xlab=NA,
+        ylab=c('Nonlinear system with \n independent uniform variates',
+        'Nonlinear system with \n correlated uniform variates'))
 }
 \references{
 Sharma, A., & Mehrotra, R. (2014). An information theoretic alternative to model a natural system using observational information alone. Water Resources Research, 50(1), 650-660.

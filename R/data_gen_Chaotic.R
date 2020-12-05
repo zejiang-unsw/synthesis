@@ -31,6 +31,8 @@
 #' and \emph{z} containing the time, the x-components, the
 #' y-components and the z-components of the Rössler system, respectively.
 #' @export
+#' @importFrom graphics plot
+#' @importFrom stats plot.ts runif ts
 #'
 #' @note Some initial values may lead to an unstable system that will tend to infinity.
 #' @references Rössler, O. E. 1976. An equation for continuous chaos. Physics Letters A, 57, 397-398.
@@ -45,35 +47,35 @@
 #'
 #' oldpar <- par(no.readonly = TRUE)
 #' par(mfrow=c(1,1), ps=12, cex.lab=1.5)
-#' plot.ts(cbind(ts.r$x,ts.r$y,ts.r$z), col=c("black","red","blue"))
+#' plot.ts(cbind(ts.r$x,ts.r$y,ts.r$z), col=c('black','red','blue'))
 #'
 #' par(mfrow=c(1,2), ps=12, cex.lab=1.5)
-#' plot(ts.r$x,ts.r$y, xlab="x",ylab = "y", type = "l")
-#' plot(ts.r$x,ts.r$z, xlab="x",ylab = "z", type = "l")
+#' plot(ts.r$x,ts.r$y, xlab='x',ylab = 'y', type = 'l')
+#' plot(ts.r$x,ts.r$z, xlab='x',ylab = 'z', type = 'l')
 #' par(oldpar)
 
-data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
-                             time = seq(0, by=0.05, length.out = 1000), s) {
-  params = c(a, b, w)
-  rosslerEquations = function(coord, t, params) {
-    x = coord[[1]]
-    y = coord[[2]]
-    z = coord[[3]]
-    a = params[[1]]
-    b = params[[2]]
-    w = params[[3]]
-    c(-y - z, x + a * y, b + z * (x - w))
-  }
-  r = rungeKutta(rosslerEquations, start, time, params)
+data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start = c(-2, -10, 0.2),
+    time = seq(0, by = 0.05, length.out = 1000), s) {
+    params <- c(a, b, w)
+    rosslerEquations <- function(coord, t, params) {
+        x <- coord[[1]]
+        y <- coord[[2]]
+        z <- coord[[3]]
+        a <- params[[1]]
+        b <- params[[2]]
+        w <- params[[3]]
+        c(-y - z, x + a * y, b + z * (x - w))
+    }
+    r <- rungeKutta(rosslerEquations, start, time, params)
 
-  #add noise
-  if(!missing(s)){
-  r[,1] <- ts(r[,1] + rnorm(length(time),mean=0, sd=s))
-  r[,2] <- ts(r[,2] + rnorm(length(time),mean=0, sd=s))
-  r[,3] <- ts(r[,3] + rnorm(length(time),mean=0, sd=s))
-  }
+    # add noise
+    if (!missing(s)) {
+        r[, 1] <- ts(r[, 1] + rnorm(length(time), mean = 0, sd = s))
+        r[, 2] <- ts(r[, 2] + rnorm(length(time), mean = 0, sd = s))
+        r[, 3] <- ts(r[, 3] + rnorm(length(time), mean = 0, sd = s))
+    }
 
-  list(time = time, x = r[, 1], y = r[, 2], z = r[, 3])
+    list(time = time, x = r[, 1], y = r[, 2], z = r[, 3])
 }
 
 #' Lorenz system
@@ -109,30 +111,30 @@ data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
 #' ts.l <- data.gen.Lorenz(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
 #'                         time = seq(0, by=0.05, length.out = 2000))
 #'
-#' ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c("black","red","blue"))
+#' ts.plot(cbind(ts.l$x,ts.l$y,ts.l$z), col=c('black','red','blue'))
 
-data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14, 47),
-                            time = seq(0, 50, length.out = 1000), s) {
-  params = c(sigma, beta, rho)
-  lorenzEquations = function(coord, t, params) {
-    x = coord[[1]]
-    y = coord[[2]]
-    z = coord[[3]]
-    sigma = params[[1]]
-    beta = params[[2]]
-    rho = params[[3]]
-    c(sigma * (y - x), rho * x - y - x * z, x * y - beta * z)
-  }
-  l = rungeKutta(lorenzEquations, start, time, params)
+data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14,
+    47), time = seq(0, 50, length.out = 1000), s) {
+    params <- c(sigma, beta, rho)
+    lorenzEquations <- function(coord, t, params) {
+        x <- coord[[1]]
+        y <- coord[[2]]
+        z <- coord[[3]]
+        sigma <- params[[1]]
+        beta <- params[[2]]
+        rho <- params[[3]]
+        c(sigma * (y - x), rho * x - y - x * z, x * y - beta * z)
+    }
+    l <- rungeKutta(lorenzEquations, start, time, params)
 
-  #add noise
-  if(!missing(s)){
-    l[,1] <- ts(l[,1] + rnorm(length(time),mean=0, sd=s))
-    l[,2] <- ts(l[,2] + rnorm(length(time),mean=0, sd=s))
-    l[,3] <- ts(l[,3] + rnorm(length(time),mean=0, sd=s))
-  }
+    # add noise
+    if (!missing(s)) {
+        l[, 1] <- ts(l[, 1] + rnorm(length(time), mean = 0, sd = s))
+        l[, 2] <- ts(l[, 2] + rnorm(length(time), mean = 0, sd = s))
+        l[, 3] <- ts(l[, 3] + rnorm(length(time), mean = 0, sd = s))
+    }
 
-  list(time = time, x = l[, 1], y = l[, 2], z = l[, 3])
+    list(time = time, x = l[, 1], y = l[, 2], z = l[, 3])
 }
 
 #' Duffing map
@@ -164,34 +166,34 @@ data.gen.Lorenz <- function(sigma = 10, beta = 8/3, rho = 28, start = c(-13, -14
 #' @examples
 #' Duffing.map=data.gen.Duffing(nobs = 1000, do.plot=TRUE)
 
-data.gen.Duffing <- function(nobs = 5000, a = 2.75, b = 0.2, start = runif(n = 2, min = -0.5, max = 0.5), s,
-                             do.plot=TRUE) {
-  nwarm=500
-  n = nobs + nwarm
-  y = x = vector(mode = "numeric", length = n)
-  x[[1]] = start[[1]]
-  y[[1]] = start[[2]]
+data.gen.Duffing <- function(nobs = 5000, a = 2.75, b = 0.2, start = runif(n = 2,
+    min = -0.5, max = 0.5), s, do.plot = TRUE) {
+    nwarm <- 500
+    n <- nobs + nwarm
+    y <- x <- vector(mode = "numeric", length = n)
+    x[[1]] <- start[[1]]
+    y[[1]] <- start[[2]]
 
-  for (i in 2:n) {
-    x[[i]] = y[[i - 1]]
-    y[[i]] = -b * x[[i - 1]] + a * y[[i - 1]] - y[[i - 1]]^3
-  }
+    for (i in 2:n) {
+        x[[i]] <- y[[i - 1]]
+        y[[i]] <- -b * x[[i - 1]] + a * y[[i - 1]] - y[[i - 1]]^3
+    }
 
-  #add noise
-  if(!missing(s)){
-    x <- x + rnorm(n,mean=0, sd=s)
-    y <- y + rnorm(n,mean=0, sd=s)
-  }
+    # add noise
+    if (!missing(s)) {
+        x <- x + rnorm(n, mean = 0, sd = s)
+        y <- y + rnorm(n, mean = 0, sd = s)
+    }
 
-  x = x[(nwarm+1):n]
-  y = y[(nwarm+1):n]
+    x <- x[(nwarm + 1):n]
+    y <- y[(nwarm + 1):n]
 
-  # plotting
-  if (do.plot) {
-    title = paste("Duffing map\n", "a = ", a, " b = ", b)
-    plot(x, y, xlab = "x[n]", ylab = "y[n]", main = title, type = "p")
-  }
-  list(x = x, y = y)
+    # plotting
+    if (do.plot) {
+        title <- paste("Duffing map\n", "a = ", a, " b = ", b)
+        plot(x, y, xlab = "x[n]", ylab = "y[n]", main = title, type = "p")
+    }
+    list(x = x, y = y)
 }
 
 #' Henon map
@@ -223,34 +225,34 @@ data.gen.Duffing <- function(nobs = 5000, a = 2.75, b = 0.2, start = runif(n = 2
 #' @examples
 #' Henon.map=data.gen.Henon(nobs = 1000, do.plot=TRUE)
 
-data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(n = 2, min = -0.5, max = 0.5), s,
-                           do.plot=TRUE) {
-  nwarm=500
-  n = nobs + nwarm
-  y = x = vector(mode = "numeric", length = n)
-  x[[1]] = start[[1]]
-  y[[1]] = start[[2]]
+data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(n = 2, min = -0.5,
+    max = 0.5), s, do.plot = TRUE) {
+    nwarm <- 500
+    n <- nobs + nwarm
+    y <- x <- vector(mode = "numeric", length = n)
+    x[[1]] <- start[[1]]
+    y[[1]] <- start[[2]]
 
-  for (i in 2:n) {
-    x[[i]] = y[[i - 1]] + 1 - a * x[[i - 1]] ^ 2
-    y[[i]] = b * x[[i - 1]]
-  }
+    for (i in 2:n) {
+        x[[i]] <- y[[i - 1]] + 1 - a * x[[i - 1]]^2
+        y[[i]] <- b * x[[i - 1]]
+    }
 
-  #add noise
-  if(!missing(s)){
-    x <- x + rnorm(n,mean=0, sd=s)
-    y <- y + rnorm(n,mean=0, sd=s)
-  }
+    # add noise
+    if (!missing(s)) {
+        x <- x + rnorm(n, mean = 0, sd = s)
+        y <- y + rnorm(n, mean = 0, sd = s)
+    }
 
-  x = x[(nwarm+1):n]
-  y = y[(nwarm+1):n]
+    x <- x[(nwarm + 1):n]
+    y <- y[(nwarm + 1):n]
 
-  # plotting
-  if (do.plot) {
-    title = paste("Henon map\n", "a = ", a, " b = ", b)
-    plot(x, y, xlab = "x[n]", ylab = "y[n]", main = title, type = "p")
-  }
-  list(x = x, y = y)
+    # plotting
+    if (do.plot) {
+        title <- paste("Henon map\n", "a = ", a, " b = ", b)
+        plot(x, y, xlab = "x[n]", ylab = "y[n]", main = title, type = "p")
+    }
+    list(x = x, y = y)
 }
 
 #' Logistic map
@@ -275,48 +277,49 @@ data.gen.Henon <- function(nobs = 5000, a = 1.4, b = 0.3, start = runif(n = 2, m
 #' @examples
 #' Logistic.map=data.gen.Logistic(nobs = 1000, do.plot=TRUE)
 
-data.gen.Logistic <- function(nobs=5000, r=4, start=runif(n = 1, min = 0, max = 1), s,
-                              do.plot=TRUE) {
-  nwarm=500
-  n = nobs + nwarm
-  x = vector(mode = "numeric", length = n)
-  x[[1]] = start
+data.gen.Logistic <- function(nobs = 5000, r = 4, start = runif(n = 1, min = 0, max = 1),
+    s, do.plot = TRUE) {
+    nwarm <- 500
+    n <- nobs + nwarm
+    x <- vector(mode = "numeric", length = n)
+    x[[1]] <- start
 
-  for (i in 2:n) {
-    x[[i]] = r * x[[i - 1]]  * (1 - x[[i - 1]])
-  }
+    for (i in 2:n) {
+        x[[i]] <- r * x[[i - 1]] * (1 - x[[i - 1]])
+    }
 
-  #add noise
-  if(!missing(s)){
-    x <- x + rnorm(n,mean=0, sd=s)
-  }
+    # add noise
+    if (!missing(s)) {
+        x <- x + rnorm(n, mean = 0, sd = s)
+    }
 
-  x = x[(nwarm+1):n]
+    x <- x[(nwarm + 1):n]
 
-  # plotting
-  if (do.plot) {
-    title = paste("Logistic map\n", "r = ",r)
-    #plot(1:nobs, x, xlab = "n", ylab = "x[n]", main = title, type = "l")
-    plot(x[-length(x)],x[-1], xlab="x[t]",ylab = "x[t+1]", main = title, type = "p")
-  }
+    # plotting
+    if (do.plot) {
+        title <- paste("Logistic map\n", "r = ", r)
+        # plot(1:nobs, x, xlab = 'n', ylab = 'x[n]', main = title, type = 'l')
+        plot(x[-length(x)], x[-1], xlab = "x[t]", ylab = "x[t+1]", main = title,
+            type = "p")
+    }
 
-  list(x=x)
+    list(x = x)
 }
 
 # Runge-Kutta method for solving differential equations. It is used to generate
-# both Lorenz and  Rossler systems.
-rungeKutta = function(func, initial.condition, time, params) {
-  n.samples = length(time)
-  h = time[[2]] - time[[1]]
-  y = matrix(ncol = length(initial.condition), nrow = n.samples)
-  y[1,] = initial.condition
-  for (i in 2:n.samples) {
-    k1 = h * func(y[i - 1, ], time[[i - 1]], params)
-    k2 = h * func(y[i - 1, ] + k1 / 2 , time[[i - 1]] + h / 2, params)
-    k3 = h * func(y[i - 1, ] + k2 / 2 , time[[i - 1]] + h / 2, params)
-    k4 = h * func(y[i - 1, ] + k3 , time[[i - 1]] + h, params)
+# both Lorenz and Rossler systems.
+rungeKutta <- function(func, initial.condition, time, params) {
+    n.samples <- length(time)
+    h <- time[[2]] - time[[1]]
+    y <- matrix(ncol = length(initial.condition), nrow = n.samples)
+    y[1, ] <- initial.condition
+    for (i in 2:n.samples) {
+        k1 <- h * func(y[i - 1, ], time[[i - 1]], params)
+        k2 <- h * func(y[i - 1, ] + k1/2, time[[i - 1]] + h/2, params)
+        k3 <- h * func(y[i - 1, ] + k2/2, time[[i - 1]] + h/2, params)
+        k4 <- h * func(y[i - 1, ] + k3, time[[i - 1]] + h, params)
 
-    y[i, ] = y[i - 1, ] + (k1 + 2 * k2 + 2 * k3 + k4) / 6
-  }
-  y
+        y[i, ] <- y[i - 1, ] + (k1 + 2 * k2 + 2 * k3 + k4)/6
+    }
+    y
 }

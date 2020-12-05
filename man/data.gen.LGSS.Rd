@@ -34,6 +34,6 @@ Gaussian random variables, i.e. \eqn{N(0,1)}.
 data.LGSS <- data.gen.LGSS(theta=c(0.75,1.00,0.10), nobs=500, start=0)
 }
 \references{
-#Dahlin, J. & Schon, T. B. "Getting Started with Particle Metropolis-Hastings for Inference in Nonlinear Dynamical Models."
+#Dahlin, J. & Schon, T. B. 'Getting Started with Particle Metropolis-Hastings for Inference in Nonlinear Dynamical Models.'
 Journal of Statistical Software, Code Snippets, 88(2): 1--41, 2019.
 }

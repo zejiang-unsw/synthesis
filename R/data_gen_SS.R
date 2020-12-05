@@ -15,37 +15,36 @@
 #' @return A list of two variables, state and response.
 #' @export
 #'
-#' @references #Dahlin, J. & Schon, T. B. "Getting Started with Particle Metropolis-Hastings for Inference in Nonlinear Dynamical Models."
+#' @references #Dahlin, J. & Schon, T. B. 'Getting Started with Particle Metropolis-Hastings for Inference in Nonlinear Dynamical Models.'
 #' Journal of Statistical Software, Code Snippets, 88(2): 1--41, 2019.
 #'
 #' @examples
 #' data.LGSS <- data.gen.LGSS(theta=c(0.75,1.00,0.10), nobs=500, start=0)
 
-data.gen.LGSS <- function(theta, nobs, start=runif(n = 1, min = -1, max = 1), do.plot=TRUE)
-{
-  phi <- theta[1]
-  sigmav <- theta[2]
-  sigmae <- theta[3]
-
-  state <- matrix(0, nrow = nobs + 1, ncol = 1)
-  obs <- matrix(0, nrow = nobs + 1, ncol = 1)
-
-  state[1] <- start
-  obs[1] <- NA
-
-  for (t in 2:(nobs + 1)) {
-    state[t] <- phi * state[t - 1] + sigmav * rnorm(1)
-    obs[t] <- state[t] + sigmae * rnorm(1)
-  }
-
-  # plotting
-  if (do.plot) {
-    title = paste("Linear Gaussian state-space model")
-    #plot(1:nobs, x, xlab = "n", ylab = "x[n]", main = title, type = "l")
-    plot.ts(cbind(state,obs), main = title, xlab=NA)
-  }
-
-  list(x = state, y = obs)
+data.gen.LGSS <- function(theta, nobs, start = runif(n = 1, min = -1, max = 1), do.plot = TRUE) {
+    phi <- theta[1]
+    sigmav <- theta[2]
+    sigmae <- theta[3]
+    
+    state <- matrix(0, nrow = nobs + 1, ncol = 1)
+    obs <- matrix(0, nrow = nobs + 1, ncol = 1)
+    
+    state[1] <- start
+    obs[1] <- NA
+    
+    for (t in 2:(nobs + 1)) {
+        state[t] <- phi * state[t - 1] + sigmav * rnorm(1)
+        obs[t] <- state[t] + sigmae * rnorm(1)
+    }
+    
+    # plotting
+    if (do.plot) {
+        title <- paste("Linear Gaussian state-space model")
+        # plot(1:nobs, x, xlab = 'n', ylab = 'x[n]', main = title, type = 'l')
+        plot.ts(cbind(state, obs), main = title, xlab = NA)
+    }
+    
+    list(x = state, y = obs)
 }
 
 #' Stochastic Volatility model

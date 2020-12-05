@@ -33,12 +33,14 @@ A list of two variables, x and classes.
 Gaussian Blobs
 }
 \details{
-This function generates a matrix of features creating multiclass datasets 
-by allocating each class one or more normally-distributed clusters of points. 
-It can control both centers and standard deviations of each cluster. 
+This function generates a matrix of features creating multiclass datasets
+by allocating each class one or more normally-distributed clusters of points.
+It can control both centers and standard deviations of each cluster.
 For example, we want to generate a dataset of weight and height (two features) of 500 people (data length),
-including three groups, baby, children, and adult. Centers are the average weight and height for each group, 
+including three groups, baby, children, and adult. Centers are the average weight and height for each group,
 assuming both weight and height are normally distributed (i.e. follow Gaussian distribution).
+The standard deviation (sd) is the sd of the Gaussian distribution
+while the bounding box (bbox) is the range for each generated cluster center when only the number of centers is given.
 }
 \examples{
 Blobs=data.gen.blobs(nobs=1000, features=2, centers=3, sd=1, bbox=c(-10,10), do.plot=TRUE)

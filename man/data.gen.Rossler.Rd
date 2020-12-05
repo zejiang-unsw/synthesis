@@ -57,18 +57,18 @@ until c = 12, period three orbits can be found, but thereafter, they do not appe
 Some initial values may lead to an unstable system that will tend to infinity.
 }
 \examples{
-###synthetic example - Rössler
+###synthetic example - RÃ¶ssler
 
 ts.r <- data.gen.Rossler(a = 0.1, b = 0.1, w = 8.7, start = c(-2, -10, 0.2),
                          time = seq(0, by=0.05, length.out = 10000))
 
 oldpar <- par(no.readonly = TRUE)
 par(mfrow=c(1,1), ps=12, cex.lab=1.5)
-plot.ts(cbind(ts.r$x,ts.r$y,ts.r$z), col=c("black","red","blue"))
+plot.ts(cbind(ts.r$x,ts.r$y,ts.r$z), col=c('black','red','blue'))
 
 par(mfrow=c(1,2), ps=12, cex.lab=1.5)
-plot(ts.r$x,ts.r$y, xlab="x",ylab = "y", type = "l")
-plot(ts.r$x,ts.r$z, xlab="x",ylab = "z", type = "l")
+plot(ts.r$x,ts.r$y, xlab='x',ylab = 'y', type = 'l')
+plot(ts.r$x,ts.r$z, xlab='x',ylab = 'z', type = 'l')
 par(oldpar)
 }
 \references{

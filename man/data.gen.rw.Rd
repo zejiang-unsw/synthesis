@@ -22,7 +22,7 @@ Generate Random walk time series.
 \examples{
 set.seed(154)
 data.rw <- data.gen.rw(200)
-plot.ts(data.rw$xd, ylim=c(-5,55), main="random walk", ylab='')
+plot.ts(data.rw$xd, ylim=c(-5,55), main='random walk', ylab='')
 lines(data.rw$x, col=4); abline(h=0, col=4, lty=2); abline(a=0, b=.2, lty=2)
 }
 \references{
