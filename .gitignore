@@ -38,3 +38,4 @@ vignettes/*.pdf
 /tests/
 /vignettes/
 
+inst/doc
