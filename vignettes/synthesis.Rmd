@@ -26,7 +26,7 @@ library(synthesis)
 
 # Introduction
 
-Synthetic data generation has been widely used not only for its usage in privacy preserving data publishing but also for its capability to support testing of new algorithms or methods. The package of **synthesis** generates synthetic time series from commonly used statistical models, including linear, nonlinear and chaotic systems. So far, **synthesis** consists of five groups of statistical models, including linear, nonlinear, dynamical, classification, and state-space systems. We demonstrate the usage of the **synthesis** package for variable selection, regression and clustering based problems. 
+Synthetic data generation has been widely used not only for its usage in privacy preserving data publishing but also for its capability to support testing of new algorithms or methods. The package of **synthesis** generates synthetic time series from commonly used statistical models, including linear, nonlinear and chaotic systems. So far, **synthesis** consists of five groups of statistical models, including linear, nonlinear, dynamical, classification, and state-space systems. The usage of the **synthesis** package covers the synthetic data generation for variable selection, prediction, and classification and clustering based problems.
 
 # Overview
 
@@ -39,21 +39,21 @@ The base model of the random walk with drift model [@Shumway2011] is given by,
   \label{eq:2}
   {{x}_{t}}\text{ =}\delta \text{ +}{{x}_{t-1}}\text{ +}{{w}_{t}}
 \end{equation}
-where $t= 1, 2, ..., n$ and ${{w}_{t}}$ is Gaussian white noise, ${{w}_{t}}\sim N(0,\sigma_w^{2})$. The constant $\delta$ is known as the drift, and when $\delta =0$, the Equation \ref{eq:2} is regarded as a random walk model. The term random walk origins from the fact that when $\delta =0$, the value of the time series at time $t$ is the value of the series at time $t-1$ plus a completely random movement determined by ${{w}_{t}}$ [@Jiang2019]. Note that the Equation \ref{eq:2} can be formulated as a cumulative sum of white noise variates as follows:
+where $t= 1, 2, ..., n$ and ${{w}_{t}}$ is Gaussian white noise, ${{w}_{t}}\sim N(0,\sigma_w^{2})$. The constant $\delta$ is known as the drift, and when $\delta =0$, it is regarded as a random walk model. The term random walk origins from the fact that when $\delta =0$, the value of the time series at time $t$ is the value of the series at time $t-1$ plus a completely random movement determined by ${{w}_{t}}$ [@Jiang2019]. Note that the equation can be formulated as a cumulative sum of white noise variates as follows:
 \begin{equation}
   \label{eq:3}
 	{{x}_{t}}\text{ = }\delta t\text{ + }\sum\limits_{j=1}^{t}{{{w}_{t}}}
 \end{equation}
-where the drift $\delta$ in the model can be seen as the trend of the time series. Therefore, this model is a good proxy for simulating trend, for example, the global temperature data. In Figure \ref{fig:mod1-1}, we show two synthetic time series with and without drift. The one with drift simulates the trend of the global temperature well.
+where the drift $\delta$ in the model can be seen as the trend of the time series. Therefore, this model is a good proxy for simulating trend, for example, the global temperature data. In the figure below, we show two synthetic time series with and without drift.
 
 ### Autoregressive model
 
-Similar with multiple regression, autoregressive model (AR), as their name suggests, is a regression with lagged values of the variable itself. The general expression of a $p$th-order autoregressive process can be written as [@Cryer2008]: 
+Autoregressive model (AR), as its name suggests, is a regression with lagged values of the variable itself. The general expression of a $p$th-order autoregressive process can be written as [@Cryer2008]: 
 \begin{equation}
 	{{x}_{t}}=c+{{\phi }_{1}}{{x}_{t-1}}+{{\phi }_{2}}{{x}_{t-2}}+\cdots +{{\phi }_{p}}{{x}_{t-p}}+{{\varepsilon }_{t}}
 \end{equation}
 
-The following linear autoregressive model (AR) are given by @Sharma2000 and included in this package:
+The following linear AR models are given by @Sharma2000 and included in this package:
 \begin{align}
 	{{x}_{t}}=0.9{{x}_{t-1}}+0.866{{\varepsilon }_{t}}\\
 	{{x}_{t}}=0.6{{x}_{t-1}}-0.4{{x}_{t-4}}+{{\varepsilon }_{t}}\\
@@ -123,7 +123,7 @@ plot.zoo(cbind(tar1,tar2,tar), col=c("black","red","blue"), ylab=c("TAR1","TAR2"
   {{y}_{t}}=b\cos {{(2\pi ft)}^{m}}-c\sin {{(2\pi ft)}^{n}}+s{{\varepsilon }_{t}}
 \end{cases}
 \end{equation}
-where $a$, $b$ and $c$ are parameters, $m$ and $n$ are integer numbers, and s is a scaling factor used to alter the levle of noise in the output, which all together specify the classical hysteresis loop (HL). The default HL model datasets was generated from $y_t$ with $f = 25Hz$, and additional nine candidate predictors were generated with various frequencies. The default values of the system parameters are $a = 0.8$, $b = 0.6$, and $c = 0.2$, which is known to produce a typical form of hysteresis system. As an example, the formulation of the synthetic data from @Jiang2020a is shown in Figure \ref{fig:mod2-1}.
+where $a$, $b$ and $c$ are parameters, $m$ and $n$ are integer numbers, and s is a scaling factor used to alter the levle of noise in the output, which all together specify the classical hysteresis loop (HL). The default HL model datasets was generated from $y_t$ with $f = 25Hz$, and additional nine candidate predictors were generated with various frequencies. The default values of the system parameters are $a = 0.8$, $b = 0.6$, and $c = 0.2$, which is known to produce a typical form of hysteresis system. As an example, the formulation of the synthetic data from @Jiang2020a is shown in the figure below.
 
 ### Friedman
 
