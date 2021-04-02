@@ -29,13 +29,13 @@ install.packages("synthesis")
 
 ## Citation
 
-Jiang, Z., Rashid, M. M., Johnson, F., & Sharma, A. (2020). A wavelet-based tool to modulate variance in predictors: An application to predicting drought anomalies. Environmental modelling & software, 135, 104907. https://doi.org/10.1016/j.envsoft.2020.104907
+Jiang, Z., Rashid, M. M., Johnson, F., & Sharma, A. (2020). A wavelet-based tool to modulate variance in predictors: An application to predicting drought anomalies. Environmental modelling & software, 135, 104907. doi:10.1016/j.envsoft.2020.104907
 
-Jiang, Z., Sharma, A., & Johnson, F. (2020). Refining Predictor Spectral Representation Using Wavelet Theory for Improved Natural System Modeling. Water Resources Research, 56(3), e2019WR026962. doi:https://doi.org/10.1029/2019WR026962
+Jiang, Z., Sharma, A., & Johnson, F. (2020). Refining Predictor Spectral Representation Using Wavelet Theory for Improved Natural System Modeling. Water Resources Research, 56(3), e2019WR026962. doi:10.1029/2019WR026962
 
-Jiang, Z., Sharma, A., & Johnson, F. (2019). Assessing the sensitivity of hydro-climatological change detection methods to model uncertainty and bias. Advances in Water Resources, 134, 103430. doi:https://doi.org/10.1016/j.advwatres.2019.103430
+Jiang, Z., Sharma, A., & Johnson, F. (2019). Assessing the sensitivity of hydro-climatological change detection methods to model uncertainty and bias. Advances in Water Resources, 134, 103430. doi:10.1016/j.advwatres.2019.103430
 
 Galelli, S., Humphrey, G. B., Maier, H. R., Castelletti, A., Dandy, G. C., & Gibbs, M. S. (2014). An evaluation framework for input variable selection algorithms for environmental data-driven models. Environmental modelling & software, 62, 33-51. doi:10.1016/j.envsoft.2014.08.015
 
-Sharma, A. (2000). Seasonal to interannual rainfall probabilistic forecasts for improved water supply management: Part 1 — A strategy for system predictor identification. Journal of Hydrology, 239(1), 232-239. doi:https://doi.org/10.1016/S0022-1694(00)00346-2
+Sharma, A. (2000). Seasonal to interannual rainfall probabilistic forecasts for improved water supply management: Part 1 — A strategy for system predictor identification. Journal of Hydrology, 239(1), 232-239. doi:10.1016/S0022-1694(00)00346-2
 
