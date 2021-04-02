@@ -35,7 +35,3 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 
-/tests/
-/vignettes/
-
-inst/doc
