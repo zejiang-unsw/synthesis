@@ -82,7 +82,7 @@ Here, we show two examples of the two-regime threshold autoregressive (TAR) proc
 \end{equation}
 where $\epsilon$ is random Gaussian noise with zero mean and unit standard deviation. Similarly, for each model, ${{x}_{t}}$ was arbitrarily initialized and a total number of $N+500$ data points were generated. The first 500 points were discarded to reduce any effects from the arbitrary initialization.
 
-```{r mod1, fig.cap=c('Example of Random walk model','Example of Autoregressive models'), fig.height=c(5,7), fig.width=c(5,9), out.width= c('80%','100%')}
+```{r mod1, fig.cap=c('Example of Random walk model','Example of Autoregressive models','Example of Threshold autoregressive models'), fig.height=c(5,7,7), fig.width=c(5,9,9), out.width= c('80%','100%','100%')}
 set.seed(2021)
 sample=500
 
@@ -111,6 +111,23 @@ tar <- data.gen.tar(nobs=1000,ndim=9,phi1=c(0.6,-0.1),
 
 plot.zoo(cbind(tar1,tar2,tar), col=c("black","red","blue"), ylab=c("TAR1","TAR2","TAR"),
               main=NA, xlab=NA, cex.axis=1.5)
+```
+
+### Sinusoidal model
+
+A general form of sinusoidal models can be written as [@Shumway2011]: 
+
+\begin{equation}
+  x_t = Acos(2\pi ft + \phi)
+\end{equation}
+where A is the amplitude, \phi is the phase, and f is the frequency. 
+
+```{r mod6, fig.cap=c('Example of Sinusoidal model'), fig.height=c(5), fig.width=c(9), out.width= c('100%')}
+set.seed(2021)
+sample=500
+
+sw <- data.gen.SW(nobs=sample, freq = 25, A = 2, phi = 0.6*pi, mu=0, sd = 0.1)
+plot(sw$t,sw$x, type='o', ylab='Cosines', xlab="t")
 ```
 
 ## Nonlinear systems
