@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
+op <- par()
 require(zoo)
 library(synthesis)
 ```
@@ -305,12 +306,61 @@ equations for the position or state of a spacecraft.
 \end{equation}
 where $v_t$ and $e_t$ denote independent standard Gaussian random variables, i.e. $N(0,1)$.
 
-```{r ss, fig.cap='Example of Linear Gaussian state-space model', fig.height=7, fig.width=9, out.width= '100%'}
+```{r ss, fig.cap='Example of linear Gaussian state-space model', fig.height=7, fig.width=9, out.width= '100%'}
 ###Linear Gaussian state-space model
 
 data.LGSS <- data.gen.LGSS(theta=c(0.75,1.00,0.10), nobs=500, do.plot = TRUE)
 
 ```
 
+## Affine error model
 
+An affine error model relating measurements to a (geophysical) variable, a standard form used in the triple collocation literature [@Zwieback2012]:
 
+```{r affine, fig.cap='Example of the affine error model', fig.height=7, fig.width=9, out.width= '100%'}
+# Affine error model with 1 true observation and 3 dummy variables
+data.affine<-data.gen.affine(500)
+
+plot.ts(cbind(data.affine$x,data.affine$dp), main="Affine error model")
+
+```
+
+## Brownian motion models
+
+Brownian motion is the random motion of particles suspended in a medium (a liquid or a gas).
+
+A geometric Brownian motion (GBM) (also known as exponential Brownian motion) is a continuous-time stochastic process in which the logarithm of the randomly varying quantity follows a Brownian motion (also called a Wiener process) with drift.
+
+A fractional Brownian motion (fBm) is a generalization of Brownian motion. Unlike classical Brownian motion, the increments of fBm need not be independent. 
+
+```{r brown, fig.cap='Example of Brownian motion models', fig.height=4, fig.width=9, out.width= '100%'}
+# Brownian motion models
+set.seed(100)
+sample <- 500
+
+par(mfrow=c(1,3), ps=10, cex.lab=1.5, pty="s")
+data.bm <- data.gen.bm(do.plot = TRUE)
+data.gbm <- data.gen.gbm(do.plot = TRUE)
+data.fbm <- data.gen.fbm(do.plot = TRUE)
+par(op)
+```
+
+## Build-up and wash-off models
+
+In water quality modelling, particulate pollutant buildup and loss (e.g., TSS) from urban and suburban catchments representing a mix of pervious and impervious surfaces has been calculated by using more sophisticated buildup/wash-off (BUWO) models [@Wu2019].
+
+```{r wq, fig.cap='Example of build-up and wash-off models', fig.height=4, fig.width=9, out.width= '100%'}
+# Build up and wash off model
+set.seed(101)
+sample = 500
+
+#create a gamma shape storm event
+q<- seq(0,20, length.out=sample)
+p <- pgamma(q, shape=9, rate =2, lower.tail = T)
+p <- c(p[1],p[2:sample]-p[1:(sample-1)])
+
+data.tss<-data.gen.BUWO(sample, k=0.5, a=5, m0=10, q=p)
+plot.zoo(cbind(p, data.tss$x, data.tss$y), xlab=NA,
+         ylab=c("Q","Bulid-up","Wash-off"), main="TSS")
+
+```

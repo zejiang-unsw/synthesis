@@ -1,3 +1,5 @@
+# synthesis (development version)
+
 # synthesis 1.2.1
 * Added a vignette to the package.
 * Included the state-space model.
