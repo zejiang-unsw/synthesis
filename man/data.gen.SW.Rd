@@ -2,7 +2,7 @@
 % Please edit documentation in R/data_gen_SW.R
 \name{data.gen.SW}
 \alias{data.gen.SW}
-\title{Generate predictor and response data: sinusoidal model}
+\title{Generate predictor and response data: Sinusoidal model}
 \usage{
 data.gen.SW(nobs = 500, freq = 50, A = 2, phi = pi, mu = 0, sd = 1)
 }
@@ -23,12 +23,30 @@ data.gen.SW(nobs = 500, freq = 50, A = 2, phi = pi, mu = 0, sd = 1)
 A list of time and x.
 }
 \description{
-Generate predictor and response data: sinusoidal model
+Generate predictor and response data: Sinusoidal model
 }
 \examples{
-sample=500
-sw <- data.gen.SW(nobs=sample, freq = 25, A = 2, phi = 0.6*pi, mu=0, sd = 0.1)
-plot(sw$t,sw$x, type='o', ylab='Cosines', xlab="t")
+### Sinusoidal model
+delta <- 1/12 # sampling rate, assuming monthly
+period.max<- 2^5
+
+N = 6*period.max/delta
+scales<- 2^(0:5)[c(2,6)] #pick two scales
+scales
+
+### scale, period, and frequency
+# freq=1/T; T=s/delta so freq = delta/s
+# since t is t is within 0-1, so freq need to have a factor of N.
+
+x1 <- NULL
+for(i in scales){ # i is the scale
+
+  tmp <- synthesis::data.gen.SW(nobs=N, freq = 1/i*N*delta, A = 1, phi = 0, mu=0, sd = 0)$x
+
+  x1 <- cbind(x1, tmp)
+}
+x <- rowSums(data.frame(x1))
+plot.ts(cbind(x1,x), type = 'l')
 }
 \references{
 Shumway, R. H., & Stoffer, D. S. (2011). Characteristics of Time Series. In D. S. Stoffer (Ed.), Time series analysis and its applications (pp. 8-14). New York : Springer.

@@ -27,6 +27,26 @@ or via CRAN with:
 install.packages("synthesis")
 ```
 
+## Report issues
+
+https://github.com/zejiang-unsw/synthesis/issues
+
+## Update history
+### synthesis 1.2.2
+* Included the affine error model.
+* Included the Brownian motion models.
+* Included the build-up and wash-off water quality model.
+* Updated the vignette.
+
+### synthesis 1.2.1
+* Added a vignette to the package.
+* Included the state-space model.
+
+### synthesis 1.2.0
+* Added a `NEWS.md` file to track changes to the package.
+* Initial version submitted to CRAN. 
+
+
 ## Citation
 
 Jiang, Z., Rashid, M. M., Johnson, F., & Sharma, A. (2020). A wavelet-based tool to modulate variance in predictors: An application to predicting drought anomalies. Environmental modelling & software, 135, 104907.
