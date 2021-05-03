@@ -1,4 +1,8 @@
-# synthesis (development version)
+# synthesis 1.2.2
+* Included the affine error model.
+* Included the Brownian motion models.
+* Included the build-up and wash-off water quality model.
+* Updated the vignette.
 
 # synthesis 1.2.1
 * Added a vignette to the package.
