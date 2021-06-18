@@ -36,17 +36,13 @@ scales
 
 ### scale, period, and frequency
 # freq=1/T; T=s/delta so freq = delta/s
-# since t is t is within 0-1, so freq need to have a factor of N.
 
-x1 <- NULL
-for(i in scales){ # i is the scale
-
-  tmp <- synthesis::data.gen.SW(nobs=N, freq = 1/i*N*delta, A = 1, phi = 0, mu=0, sd = 0)$x
-
-  x1 <- cbind(x1, tmp)
+tmp <- NULL
+for(s in scales){
+  tmp <- cbind(tmp, data.gen.SW(nobs=N, freq = delta/s, A = 1, phi = 0, mu=0, sd = 0)$x)
 }
-x <- rowSums(data.frame(x1))
-plot.ts(cbind(x1,x), type = 'l')
+x <- rowSums(data.frame(tmp))
+plot.ts(cbind(tmp,x), type = 'l', main=NA)
 }
 \references{
 Shumway, R. H., & Stoffer, D. S. (2011). Characteristics of Time Series. In D. S. Stoffer (Ed.), Time series analysis and its applications (pp. 8-14). New York : Springer.
