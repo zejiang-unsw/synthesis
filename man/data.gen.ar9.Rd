@@ -21,4 +21,9 @@ Generate predictor and response data from AR9 model.
 # AR9 model from paper with total 9 dimensions
 data.ar9<-data.gen.ar9(500)
 plot.ts(cbind(data.ar9$x,data.ar9$dp))
+
+\donttest{
+# Predictor Identifier
+NPRED::stepwise.PIC(data.ar9$x, data.ar9$dp)
+}
 }

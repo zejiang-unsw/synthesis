@@ -21,4 +21,9 @@ Generate predictor and response data from AR4 model.
 # AR4 model from paper with total 9 dimensions
 data.ar4<-data.gen.ar4(500)
 plot.ts(cbind(data.ar4$x,data.ar4$dp))
+
+\donttest{
+# Predictor Identifier
+NPRED::stepwise.PIC(data.ar4$x, data.ar4$dp)
+}
 }

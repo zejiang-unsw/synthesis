@@ -53,6 +53,27 @@
 #' plot(ts.r$x,ts.r$y, xlab='x',ylab = 'y', type = 'l')
 #' plot(ts.r$x,ts.r$z, xlab='x',ylab = 'z', type = 'l')
 #' par(oldpar)
+#'
+#' \donttest{
+#' # Application to testing variance transformation method in:
+#' # Jiang, Z., Sharma, A., & Johnson, F. (2020) <doi:10.1029/2019WR026962>
+#' data <- list(x = ts.r$z, dp = cbind(ts.r$x, ts.r$y))
+#' dwt <- WASP::dwt.vt(data, wf="d4", J=7, method="dwt", pad="zero", boundary="periodic")
+#'
+#' par(mfrow = c(ncol(dwt$dp), 1), mar = c(0, 2.5, 2, 1),
+#'     oma = c(2, 1, 0, 0), # move plot to the right and up
+#'     mgp = c(1.5, 0.5, 0), # move axis labels closer to axis
+#'     pty = "m", bg = "transparent",
+#'     ps = 12)
+#'
+#' # plot(dwt$x, type="l", xlab=NA, ylab="SPI12", col="red")
+#' # plot(dwt$x, type="l", xlab=NA, ylab="Rain", col="red")
+#' for (i in 1:ncol(dwt$dp)) {
+#'   ts.plot(cbind(dwt$dp[, i], dwt$dp.n[, i]),
+#'           xlab = NA, ylab = NA,
+#'           col = c("black", "blue"), lwd = c(1, 2))
+#' }
+#' }
 
 data.gen.Rossler <- function(a = 0.2, b = 0.2, w = 5.7, start = c(-2, -10, 0.2),
     time = seq(0, by = 0.05, length.out = 1000), s) {

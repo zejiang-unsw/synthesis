@@ -10,6 +10,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
   
 bibliography: ../inst/synthesis.bib
+
 ---
 
 ```{r, include = FALSE}
@@ -364,3 +365,4 @@ plot.zoo(cbind(p, data.tss$x, data.tss$y), xlab=NA,
          ylab=c("Q","Bulid-up","Wash-off"), main="TSS")
 
 ```
+
