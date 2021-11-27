@@ -1,6 +1,6 @@
 Package: synthesis
 Title: Generate Synthetic Data from Statistical Models
-Version: 1.2.2
+Version: 1.2.3
 Authors@R: 
     person(given = "Ze",
            family = "Jiang",
@@ -20,10 +20,12 @@ Imports:
     MASS,
     graphics
 Suggests: 
-    testthat,
-    devtools,
+    zoo,
     knitr,
+    WASP,
+    NPRED,
     rmarkdown,
-    zoo
+    testthat,
+    devtools
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr

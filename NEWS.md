@@ -1,3 +1,6 @@
+# synthesis 1.2.3
+* Included applications to testing methods (e.g. WASP and NPRED)
+
 # synthesis 1.2.2
 * Included the affine error model.
 * Included the Brownian motion models.
