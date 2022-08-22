@@ -22,8 +22,4 @@ Generate predictor and response data from AR4 model.
 data.ar4<-data.gen.ar4(500)
 plot.ts(cbind(data.ar4$x,data.ar4$dp))
 
-\donttest{
-# Predictor Identifier
-NPRED::stepwise.PIC(data.ar4$x, data.ar4$dp)
-}
 }

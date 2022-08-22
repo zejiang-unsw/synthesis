@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
+# Do not load WASP or NPRED directly, but instead call them by WASP:: or NPRED::.
 op <- par()
 require(zoo)
 library(synthesis)
@@ -95,12 +96,17 @@ plot.ts(data.rw$xd, ylim=c(-35,55), main="Random walk", xlab=NA, ylab=NA, cex.ax
 lines(data.rw$x, col=4); abline(h=0, col=4, lty=2); abline(a=0, b=.1, lty=2)
 
 ###Synthetic example - AR models
-ar1 <- data.gen.ar1(nobs=sample)$x
-ar4 <- data.gen.ar4(nobs=sample)$x
-ar9 <- data.gen.ar9(nobs=sample)$x
+data.ar1 <- data.gen.ar1(nobs=sample)
+data.ar4 <- data.gen.ar4(nobs=sample)
+data.ar9 <- data.gen.ar9(nobs=sample)
 
-plot.zoo(cbind(ar1,ar4,ar9), col=c("black","red","blue"), ylab=c("AR1","AR4","AR9"),
-              main=NA, xlab=NA, cex.axis=1.5)
+plot.zoo(cbind(data.ar1$x,data.ar4$x,data.ar9$x), col=c("black","red","blue"),
+         ylab=c("AR1","AR4","AR9"),main=NA, xlab=NA, cex.axis=1.5)
+
+# Applications to test predictor identification
+NPRED::stepwise.PIC(data.ar1$x, data.ar1$dp)
+NPRED::stepwise.PIC(data.ar4$x, data.ar4$dp)
+NPRED::stepwise.PIC(data.ar9$x, data.ar9$dp)
 
 ###Synthetic example - TAR models
 # Two TAR models in Sharma (2000)
@@ -124,11 +130,11 @@ A general form of sinusoidal models can be written as [@Shumway2011]:
 \end{equation}
 where A is the amplitude, \phi is the phase, and f is the frequency. 
 
-```{r mod6, fig.cap=c('Example of Sinusoidal model'), fig.height=c(5), fig.width=c(9), out.width= c('100%')}
+```{r mod6, fig.cap=c('Example of Sinusoidal model'), fig.height=5, fig.width=9, out.width= c('100%')}
 set.seed(2021)
 sample=500
 
-sw <- data.gen.SW(nobs=sample, freq = 25, A = 2, phi = 0.6*pi, mu=0, sd = 0.1)
+sw <- data.gen.SW(nobs=sample, freq=25, A=2, phi=0.6*pi, mu=0, sd=0.1)
 plot(sw$t,sw$x, type='o', ylab='Cosines', xlab="t")
 ```
 
@@ -229,6 +235,25 @@ ts.r <- data.gen.Rossler(a = 0.2, b = 0.2, w = 5.7, start=c(-2, -10, 0.2),
 par(mfrow=c(1,2), ps=12, cex.lab=1.5)
 plot(ts.r$x,ts.r$y, xlab="x",ylab = "y", type = "l")
 plot(ts.r$x,ts.r$z, xlab="x",ylab = "z", type = "l")
+
+# Application to testing variance transformation method in:
+# Jiang, Z., Sharma, A., & Johnson, F. (2020) <doi:10.1029/2019WR026962>
+data <- list(x = ts.r$z, dp = cbind(ts.r$x, ts.r$y))
+dwt <- WASP::dwt.vt(data, wf="d4", J=7, method="dwt", pad="zero", boundary="periodic")
+
+par(mfrow = c(ncol(dwt$dp), 1), mar = c(0, 2.5, 2, 1),
+    oma = c(2, 1, 0, 0), # move plot to the right and up
+    mgp = c(1.5, 0.5, 0), # move axis labels closer to axis
+    pty = "m", bg = "transparent",
+    ps = 12)
+
+# plot(dwt$x, type="l", xlab=NA, ylab="SPI12", col="red")
+# plot(dwt$x, type="l", xlab=NA, ylab="Rain", col="red")
+for (i in 1:ncol(dwt$dp)) {
+  ts.plot(cbind(dwt$dp[, i], dwt$dp.n[, i]),
+          xlab = NA, ylab = NA,
+          col = c("black", "blue"), lwd = c(1, 2))
+}
 ```
 
 ### Lorenz system

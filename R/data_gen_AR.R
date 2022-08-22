@@ -12,8 +12,6 @@
 #' data.ar1<-data.gen.ar1(500)
 #' plot.ts(cbind(data.ar1$x,data.ar1$dp))
 #'
-#' # Predictor Identifier
-#' NPRED::stepwise.PIC(data.ar1$x, data.ar1$dp)
 
 data.gen.ar1 <- function(nobs, ndim = 9) {
     nwarm <- 500
@@ -46,10 +44,6 @@ data.gen.ar1 <- function(nobs, ndim = 9) {
 #' data.ar4<-data.gen.ar4(500)
 #' plot.ts(cbind(data.ar4$x,data.ar4$dp))
 #'
-#'\donttest{
-#' # Predictor Identifier
-#' NPRED::stepwise.PIC(data.ar4$x, data.ar4$dp)
-#' }
 
 data.gen.ar4 <- function(nobs, ndim = 9) {
     nwarm <- 500
@@ -82,10 +76,6 @@ data.gen.ar4 <- function(nobs, ndim = 9) {
 #' data.ar9<-data.gen.ar9(500)
 #' plot.ts(cbind(data.ar9$x,data.ar9$dp))
 #'
-#'\donttest{
-#' # Predictor Identifier
-#' NPRED::stepwise.PIC(data.ar9$x, data.ar9$dp)
-#' }
 
 data.gen.ar9 <- function(nobs, ndim = 9) {
     nwarm <- 500

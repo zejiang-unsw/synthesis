@@ -57,7 +57,7 @@ until c = 12, period three orbits can be found, but thereafter, they do not appe
 Some initial values may lead to an unstable system that will tend to infinity.
 }
 \examples{
-###synthetic example - RÃ¶ssler
+###synthetic example - Rössler
 
 ts.r <- data.gen.Rossler(a = 0.1, b = 0.1, w = 8.7, start = c(-2, -10, 0.2),
                          time = seq(0, by=0.05, length.out = 10000))
@@ -71,26 +71,6 @@ plot(ts.r$x,ts.r$y, xlab='x',ylab = 'y', type = 'l')
 plot(ts.r$x,ts.r$z, xlab='x',ylab = 'z', type = 'l')
 par(oldpar)
 
-\donttest{
-# Application to testing variance transformation method in:
-# Jiang, Z., Sharma, A., & Johnson, F. (2020) <doi:10.1029/2019WR026962>
-data <- list(x = ts.r$z, dp = cbind(ts.r$x, ts.r$y))
-dwt <- WASP::dwt.vt(data, wf="d4", J=7, method="dwt", pad="zero", boundary="periodic")
-
-par(mfrow = c(ncol(dwt$dp), 1), mar = c(0, 2.5, 2, 1),
-    oma = c(2, 1, 0, 0), # move plot to the right and up
-    mgp = c(1.5, 0.5, 0), # move axis labels closer to axis
-    pty = "m", bg = "transparent",
-    ps = 12)
-
-# plot(dwt$x, type="l", xlab=NA, ylab="SPI12", col="red")
-# plot(dwt$x, type="l", xlab=NA, ylab="Rain", col="red")
-for (i in 1:ncol(dwt$dp)) {
-  ts.plot(cbind(dwt$dp[, i], dwt$dp.n[, i]),
-          xlab = NA, ylab = NA,
-          col = c("black", "blue"), lwd = c(1, 2))
-}
-}
 }
 \references{
 Rössler, O. E. 1976. An equation for continuous chaos. Physics Letters A, 57, 397-398.
