@@ -1,5 +1,8 @@
 # synthesis (development version)
 
+# synthesis 1.2.4
+* Remove greek letters in plot
+
 # synthesis 1.2.3
 * Included applications to testing methods (e.g. WASP and NPRED)
 
