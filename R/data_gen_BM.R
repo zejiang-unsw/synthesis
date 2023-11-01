@@ -27,7 +27,7 @@ data.gen.bm <- function(x0=0, w0=0, time=seq(0, by=0.01, length.out = 101), do.p
 
   # plotting
   if (do.plot) {
-    title = paste("Brownian motion\n", "x0 = ", x0, "\u0394t = ", delta)
+    title = paste("Brownian motion\n", "x0 = ", x0, "dt = ", delta)
     plot(x, xlab = "t", ylab = "x", main = title, type = "l")
   }
 
@@ -67,8 +67,8 @@ data.gen.gbm <- function(x0=10, w0=0, mu=1, sigma=0.5, time=seq(0, by=0.01, leng
 
   # plotting
   if (do.plot) {
-    title = paste("Geometric Brownian motion\n", "x0 = ", x0, "\u0394t = ", delta,
-                                                 "\u03BC = ", mu, "\u03C3 = ", sigma)
+
+    title = paste("Geometric Brownian motion\n", "x0 = ", x0, " dt = ", delta)
     plot(x, xlab = "t", ylab = "x", main = title, type = "l")
   }
 
@@ -115,7 +115,7 @@ data.gen.fbm <- function(hurst=0.95, time=seq(0, by=0.01, length.out=1000), do.p
 
   # plotting
   if (do.plot) {
-    title = paste("Fractional Brownian motion\n", "hurst = ", hurst, "\u0394t = ", delta)
+    title = paste("Fractional Brownian motion\n", "hurst = ", hurst, "dt = ", delta)
     plot(x, xlab = "t", ylab = "x", main = title, type = "l")
   }
 

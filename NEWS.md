@@ -1,3 +1,5 @@
+# synthesis (development version)
+
 # synthesis 1.2.3
 * Included applications to testing methods (e.g. WASP and NPRED)
 

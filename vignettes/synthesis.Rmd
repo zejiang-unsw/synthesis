@@ -6,11 +6,11 @@ output:
     number_sections: true
 vignette: >
   %\VignetteIndexEntry{synthesis}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  
+  %\VignetteEngine{knitr::rmarkdown}
 bibliography: ../inst/synthesis.bib
-
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
