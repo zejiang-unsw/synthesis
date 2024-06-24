@@ -21,7 +21,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-# Do not load WASP or NPRED directly, but instead call them by WASP:: or NPRED::.
 op <- par()
 require(zoo)
 library(synthesis)
@@ -102,11 +101,6 @@ data.ar9 <- data.gen.ar9(nobs=sample)
 
 plot.zoo(cbind(data.ar1$x,data.ar4$x,data.ar9$x), col=c("black","red","blue"),
          ylab=c("AR1","AR4","AR9"),main=NA, xlab=NA, cex.axis=1.5)
-
-# Applications to test predictor identification
-NPRED::stepwise.PIC(data.ar1$x, data.ar1$dp)
-NPRED::stepwise.PIC(data.ar4$x, data.ar4$dp)
-NPRED::stepwise.PIC(data.ar9$x, data.ar9$dp)
 
 ###Synthetic example - TAR models
 # Two TAR models in Sharma (2000)
