@@ -1,4 +1,4 @@
-# synthesis (development version)
+# synthesis 1.2.5
 
 # synthesis 1.2.4
 * Remove greek letters in plot
